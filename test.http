@@ -1,0 +1,19 @@
+@host=http://localhost:3000
+
+
+GET {{host}}/dev
+
+
+###
+
+GET {{host}}/dev/greet/
+
+###
+
+POST {{host}}/dev/check/afsd
+content-type: application/json
+
+{
+    "name": "sotiris",
+    "surname": "loizou"
+}
