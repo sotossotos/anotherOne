@@ -1,6 +1,7 @@
 service: anotherOne
 plugins:
-  - serverless-offline
+    - serverless-offline
+    - serverless-dynamodb-local
 frameworkVersion: '2'
 provider:
   name: aws
@@ -8,21 +9,21 @@ provider:
   lambdaHashingVersion: 20201221
 functions:
   up:
-    handler: up.handler
+    handler: src/handlers/up.handler
     events:
       - http:
           method: GET
           path: /
           cors: true
   greet:
-    handler: greet.handler
+    handler: src/handlers/greet.handler
     events:
       - http:
           method: GET
           path: /greet/{NAME}
           cors: true
   check:
-    handler: check.handler
+    handler: src/handlers/check.handler
     events:
       - http:
           method: POST

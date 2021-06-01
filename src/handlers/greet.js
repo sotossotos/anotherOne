@@ -1,5 +1,5 @@
 'use strict'
-const Responses = require('../anotherOne/API_Responses');
+const Responses = require('../utils/API_Responses');
 const AWS = require("aws-sdk");
 exports.handler = async (event) => {
     var name = String(event.pathParameters.NAME);

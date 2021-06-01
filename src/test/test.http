@@ -10,7 +10,7 @@ GET {{host}}/dev/greet/
 
 ###
 
-POST {{host}}/dev/check/afsd
+POST {{host}}/dev/check/12
 content-type: application/json
 
 {
