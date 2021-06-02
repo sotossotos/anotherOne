@@ -9,6 +9,7 @@
  - npm install serverless-webpack --save-dev
  - sls dynamodb install
  - npm install --save-dev jest
+ - npm install --save-dev @shelf/jest-dynamodb
 
 ## Execution/Run
  - Command "sls offline (start)" start can be omitted.

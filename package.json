@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "serverless-offline": "^7.0.0"
   },
   "devDependencies": {
+    "@shelf/jest-dynamodb": "^1.8.1",
     "jest": "^27.0.3",
     "serverless-webpack": "^5.5.0",
     "webpack": "^5.38.1"
