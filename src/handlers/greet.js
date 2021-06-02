@@ -2,7 +2,7 @@
 const Responses = require('../utils/API_Responses');
 const AWS = require("aws-sdk");
 exports.handler = async (event) => {
-    var name = String(event.pathParameters.NAME);
+    let name = String(event.pathParameters.NAME);
     console.log(name)
     return {
       statusCode: 200,

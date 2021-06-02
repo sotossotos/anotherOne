@@ -1,12 +1,34 @@
 service: anotherOne
-plugins:
-    - serverless-offline
-    - serverless-dynamodb-local
+
 frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
+  environment:
+        tableName: ${self:custom.tableName}
+  iamRoleStatements:
+        - Effect: Allow
+          Action:
+              - dynamodb:*
+          Resource: '*'
+plugins:
+##    - serverless-webpack
+    - serverless-offline
+    - serverless-dynamodb-local
+package:
+    individually: true
+custom:
+    tableName: customer-table
+    dynamodb:
+        stages:
+            - dev
+        start:
+            port: 8000
+            inMemory: true
+            migrate: true
+        migration:
+            dir: tables
 functions:
   up:
     handler: src/handlers/up.handler
@@ -28,4 +50,31 @@ functions:
       - http:
           method: POST
           path: /check/{AGE}
+          cors: true
+  createCustomer:
+    handler: src/handlers/createCustomer.handler
+    events:
+      - http:
+          method: POST
+          path: /create-customer/{ID}
           cors: true  
+  getCustomer:
+    handler: src/handlers/getCustomer.handler
+    events:
+      - http:
+          method: GET
+          path: /get-customer/{ID}
+          cors: true  
+resources:
+    Resources:
+        MyDynamoDbTable:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                TableName: ${self:custom.tableName}
+                AttributeDefinitions:
+                    - AttributeName: ID
+                      AttributeType: S
+                KeySchema:
+                    - AttributeName: ID
+                      KeyType: HASH
+                BillingMode: PAY_PER_REQUEST

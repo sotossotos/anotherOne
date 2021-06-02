@@ -2,7 +2,7 @@
 const Responses = require('../utils/API_Responses');
 const AWS = require("aws-sdk");
 exports.handler = async (event) => {
-    var age = String(event.pathParameters.AGE);
+    let age = String(event.pathParameters.AGE);
     const user = JSON.parse(event.body);
     if (!user.name || !user.surname){
         return Responses._400({ message: 'Something wrong with JSON BODY' });
@@ -11,7 +11,7 @@ exports.handler = async (event) => {
         return Responses._400({ message: 'Age parameter expected in url' });
     }
     console.log(age)
-    var check="-limit"
+    let check="-limit"
     if (age<18){
         check="under"+check
     }else{

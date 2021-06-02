@@ -6,14 +6,81 @@ GET {{host}}/dev
 
 ###
 
-GET {{host}}/dev/greet/
+GET {{host}}/dev/greet/sotiris
 
 ###
 
-POST {{host}}/dev/check/12
+POST {{host}}/dev/check/18
 content-type: application/json
 
 {
     "name": "sotiris",
     "surname": "loizou"
 }
+
+###
+
+POST {{host}}/dev/check/17
+content-type: application/json
+
+{
+    "name": "sotiris",
+    "surname": "loizou"
+} 
+###
+
+POST {{host}}/dev/check/fasd
+content-type: application/json
+
+{
+    "name": "sotiris",
+    "surname": "loizou"
+}
+
+
+###
+
+POST {{host}}/dev/check/17
+content-type: application/json
+
+{
+    "fasd": "sotiris",
+    "surname": "loizou"
+}
+###
+
+POST {{host}}/dev/check/17
+content-type: application/json
+
+{
+    "name": "sotiris",
+    "afss": "loizou"
+}
+
+###
+
+POST {{host}}/dev/check/17
+content-type: application/json
+
+{
+    "fasd": "sotiris",
+    "fas": "loizou"
+}
+
+###
+POST {{host}}/dev/create-customer/1
+content-type: application/json
+
+{
+    "name": "sotiris",
+    "surname": "loizou"
+}
+
+###
+GET {{host}}/dev/get-customer/1
+
+###
+GET {{host}}/dev/get-customer/2
+
+###
+GET {{host}}/dev/get-customer/fasd
