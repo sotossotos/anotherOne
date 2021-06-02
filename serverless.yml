@@ -13,7 +13,7 @@ provider:
               - dynamodb:*
           Resource: '*'
 plugins:
-##    - serverless-webpack
+    - serverless-webpack
     - serverless-offline
     - serverless-dynamodb-local
 package:
@@ -29,6 +29,11 @@ custom:
             migrate: true
         migration:
             dir: tables
+    webpack:
+      webpackConfig: 'webpack.config.js' # Name of webpack configuration file
+      includeModules: false # Node modules configuration for packaging
+      packager: 'npm' # Packager that will be used to package your external modules
+      excludeFiles: src/**/*.test.js # Provide a glob for files to ignore
 functions:
   up:
     handler: src/handlers/up.handler

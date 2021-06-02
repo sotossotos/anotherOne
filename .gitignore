@@ -345,6 +345,7 @@ FakesAssemblies/
 .ntvs_analysis.dat
 node_modules/
 .dynamodb/
+.webpack/
 
 # Typescript v1 declaration files
 typings/
