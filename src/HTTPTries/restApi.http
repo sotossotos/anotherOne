@@ -84,3 +84,22 @@ GET {{host}}/dev/get-customer/2
 
 ###
 GET {{host}}/dev/get-customer/fasd
+
+###
+POST {{host}}/dev/create-strict-customer/22341
+content-type: application/json
+
+{
+    "name": "sotiris",
+    "surname": "loizou",
+    "birth_year": "1900"
+}
+
+###
+GET {{host}}/dev/get-strict-customer/1
+
+###
+GET {{host}}/dev/get-strict-customer/2
+
+###
+GET {{host}}/dev/get-strict-customer/fasd

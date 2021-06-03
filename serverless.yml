@@ -63,6 +63,13 @@ functions:
           method: POST
           path: /create-customer/{ID}
           cors: true  
+  createStrictCustomer:
+    handler: src/handlers/createStrictCustomer.handler
+    events:
+      - http:
+          method: POST
+          path: /create-strict-customer/{ID}
+          cors: true  
   getCustomer:
     handler: src/handlers/getCustomer.handler
     events:
