@@ -5,6 +5,8 @@ provider:
   name: aws
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
+  profile: serverlessUser
+  region: eu-west-2
   environment:
         tableName: ${self:custom.tableName}
   iamRoleStatements:

@@ -1,0 +1,33 @@
+
+version: 2.1
+
+orbs:
+
+  node: circleci/node@4.1
+
+
+jobs:
+  build-and-deploy:  
+    docker:
+      - image: cimg/node:15.1
+    steps:
+      - checkout
+      - run:
+          command: sudo npm i -g serverless npm@latest
+      - run:
+           command: npm install
+      - run:
+           command: ./.circleci/install-cred.sh
+      - run:
+           command: sls deploy
+
+
+workflows:
+  build-and-deploy: 
+    jobs:
+      - build-and-deploy:
+          context: serverlessProject
+          filter:
+              branches:
+                  only:
+                      - main
