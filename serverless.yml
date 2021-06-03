@@ -16,6 +16,7 @@ plugins:
     - serverless-webpack
     - serverless-offline
     - serverless-dynamodb-local
+    - serverless-plugin-scripts
 package:
     individually: true
 custom:
@@ -29,6 +30,9 @@ custom:
             migrate: true
         migration:
             dir: tables
+    scripts:
+        hooks: 
+            'aws:common:validate:validate': tableName=customer-table npm run test
     webpack:
       webpackConfig: 'webpack.config.js' # Name of webpack configuration file
       includeModules: false # Node modules configuration for packaging
@@ -40,7 +44,7 @@ functions:
     events:
       - http:
           method: GET
-          path: /
+          path: /live
           cors: true
   greet:
     handler: src/handlers/greet.handler
@@ -50,25 +54,32 @@ functions:
           path: /greet/{NAME}
           cors: true
   check:
-    handler: src/handlers/check.handler
+    handler: src/handlers/checkAge.handler
     events:
       - http:
           method: POST
-          path: /check/{AGE}
+          path: /age-restriction/{AGE}
           cors: true
   createCustomer:
     handler: src/handlers/createCustomer.handler
     events:
       - http:
           method: POST
-          path: /create-customer/{ID}
+          path: /customer/{ID}
+          cors: true  
+  createStrictCustomer:
+    handler: src/handlers/createStrictCustomer.handler
+    events:
+      - http:
+          method: POST
+          path: /strict-customer/{ID}
           cors: true  
   getCustomer:
     handler: src/handlers/getCustomer.handler
     events:
       - http:
           method: GET
-          path: /get-customer/{ID}
+          path: /customer/{ID}
           cors: true  
 resources:
     Resources:

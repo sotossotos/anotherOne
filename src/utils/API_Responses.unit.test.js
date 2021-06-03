@@ -22,6 +22,12 @@ test('404 sanity test',()=>{
     expect(typeof res.body).toBe('string');
     expect(res.headers['Content-Type']).toBe('application/json');
 });
+test('500 sanity test',()=>{
+    const res= Responses._500({name:'josh'});
+    expect(res.statusCode).toBe(500);
+    expect(typeof res.body).toBe('string');
+    expect(res.headers['Content-Type']).toBe('application/json');
+});
 
 test('Define Response',()=>{
     const res =Responses._DefineResponse(111,{anyattr:'whatever'});

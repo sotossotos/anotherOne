@@ -10,7 +10,7 @@ exports.handler = async event => {
     }
 
     let ID = event.pathParameters.ID;
-
+    
     const customer = await Dynamo.get(ID, tableName).catch(err => {
         console.log('error in Dynamo Get', err);
         return null;

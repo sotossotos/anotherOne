@@ -346,6 +346,7 @@ FakesAssemblies/
 node_modules/
 .dynamodb/
 .webpack/
+.serverless/
 
 # Typescript v1 declaration files
 typings/

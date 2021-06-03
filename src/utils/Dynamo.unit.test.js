@@ -31,3 +31,7 @@ test('dynamo get works', async()=>{
         console.log('error in dynamo get',error);
     }
 });
+
+test('should fail',()=>{
+    //expect(false).toBe(true);
+});
