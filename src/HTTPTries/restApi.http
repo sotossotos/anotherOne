@@ -1,7 +1,7 @@
 @host=http://localhost:3000
 
 
-GET {{host}}/dev
+GET {{host}}/dev/live
 
 
 ###
@@ -10,7 +10,7 @@ GET {{host}}/dev/greet/sotiris
 
 ###
 
-POST {{host}}/dev/check/18
+POST {{host}}/dev/age-restriction/18
 content-type: application/json
 
 {
@@ -20,7 +20,7 @@ content-type: application/json
 
 ###
 
-POST {{host}}/dev/check/17
+POST {{host}}/dev/age-restriction/17
 content-type: application/json
 
 {
@@ -29,7 +29,7 @@ content-type: application/json
 } 
 ###
 
-POST {{host}}/dev/check/fasd
+POST {{host}}/dev/age-restriction/fasd
 content-type: application/json
 
 {
@@ -40,7 +40,7 @@ content-type: application/json
 
 ###
 
-POST {{host}}/dev/check/17
+POST {{host}}/dev/age-restriction/17
 content-type: application/json
 
 {
@@ -49,7 +49,7 @@ content-type: application/json
 }
 ###
 
-POST {{host}}/dev/check/17
+POST {{host}}/dev/age-restriction/17
 content-type: application/json
 
 {
@@ -59,7 +59,7 @@ content-type: application/json
 
 ###
 
-POST {{host}}/dev/check/17
+POST {{host}}/dev/age-restriction/17
 content-type: application/json
 
 {
@@ -68,7 +68,7 @@ content-type: application/json
 }
 
 ###
-POST {{host}}/dev/create-customer/1
+POST {{host}}/dev/customer/1
 content-type: application/json
 
 {
@@ -77,16 +77,16 @@ content-type: application/json
 }
 
 ###
-GET {{host}}/dev/get-customer/1
+GET {{host}}/dev/customer/1
 
 ###
-GET {{host}}/dev/get-customer/2
+GET {{host}}/dev/customer/2
 
 ###
-GET {{host}}/dev/get-customer/fasd
+GET {{host}}/dev/customer/fasd
 
 ###
-POST {{host}}/dev/create-strict-customer/22341
+POST {{host}}/dev/strict-customer/22341
 content-type: application/json
 
 {
@@ -96,7 +96,7 @@ content-type: application/json
 }
 
 ###
-GET {{host}}/dev/get-strict-customer/1
+GET {{host}}/dev/get-strict-customer/22341
 
 ###
 GET {{host}}/dev/get-strict-customer/2
