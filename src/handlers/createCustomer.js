@@ -1,7 +1,8 @@
 const Responses = require('../utils/API_Responses');
 const Dynamo = require('../utils/Dynamo');
 
-const tableName = process.env.tableName;
+//const tableName = process.env.tableName;
+const tableName="customer-table";
 exports.handler = async event => {
     
     if (!event.pathParameters || !event.pathParameters.ID) {

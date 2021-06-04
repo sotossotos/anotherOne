@@ -15,7 +15,7 @@ describe('Create customer integration test',()=>{
     });
 
 
-
+    
     test('it should take a body and return an API Gateway response', async()=>{
         const event=eventGen({
             body:{
@@ -32,7 +32,8 @@ describe('Create customer integration test',()=>{
         const event=eventGen({
             body:{
                 name:'solo',
-                surname:'man'
+                surname:'man',
+                birthYear:1900
             },
             pathParametersObject:{
                 ID:'fasd234',
@@ -45,7 +46,8 @@ describe('Create customer integration test',()=>{
             newCustomer:{
                 name:'solo',
                 surname:'man',
-                ID:'fasd234',
+                birthYear:1900,
+                ID:'fasd234'
             }
         })
     });
