@@ -15,11 +15,11 @@ jobs:
       - run:
           command: sudo npm i -g serverless npm@latest
       - run:
-           command: npm install
+          command: npm install
       - run:
-           command: ./.circleci/install-cred.sh
+          command: ./.circleci/install-cred.sh
       - run:
-           command: sls deploy
+          command: sls deploy
 
 
 workflows:
@@ -27,7 +27,8 @@ workflows:
     jobs:
       - build-and-deploy:
           context: serverlessProject
-          filter:
+            filters:
               branches:
-                  only:
-                      - main
+                only:
+                  - main
+                
