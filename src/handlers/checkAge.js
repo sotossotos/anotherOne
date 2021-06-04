@@ -1,8 +1,17 @@
 'use strict'
 const Responses = require('../utils/API_Responses');
 const AWS = require("aws-sdk");
+
+/**
+ * This API gateway checks age limit
+ * 
+ * 
+ * @param {*} event 
+ * @returns 
+ */
 exports.handler = async (event) => {
     let age = String(event.pathParameters.AGE);
+    console.log(event);
     const user = JSON.parse(event.body);
     if (!user.name || !user.surname){
         return Responses._400({ message: 'Something wrong with JSON BODY' });

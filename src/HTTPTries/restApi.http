@@ -1,4 +1,5 @@
 @host=http://localhost:3000
+@awshost=https://x2kzg20gw3.execute-api.eu-west-2.amazonaws.com
 
 
 GET {{host}}/dev/live
@@ -17,7 +18,14 @@ content-type: application/json
     "name": "sotiris",
     "surname": "loizou"
 }
+###
+POST {{awshost}}/dev/age-restriction/12
+content-type: application/json
 
+{
+    "name": "sotiris",
+    "surname": "loizou"
+}
 ###
 
 POST {{host}}/dev/age-restriction/17
@@ -95,6 +103,15 @@ content-type: application/json
     "birthYear": "1900"
 }
 
+###
+POST https://x2kzg20gw3.execute-api.eu-west-2.amazonaws.com/dev/strict-customer/12345
+content-type: application/json
+
+{
+    "name": "jonhy",
+    "surname": "leviathan",
+    "birthYear": "2000"
+}
 ###
 GET {{host}}/dev/get-strict-customer/22341
 
