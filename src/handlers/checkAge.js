@@ -3,7 +3,7 @@ const Responses = require('../utils/API_Responses');
 const AWS = require("aws-sdk");
 
 /**
- * This API gateway checks age limit
+ * This API gateway checks age limit.
  * 
  * 
  * @param {*} event 
