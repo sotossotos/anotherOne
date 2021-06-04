@@ -14,10 +14,6 @@ exports.handler = async event => {
 
     const ID = event.pathParameters.ID;
 
-    // const customer = await Dynamo.get(ID, tableName).catch(err => {
-    //     console.log('error in Dynamo Get', err);
-    //     return Responses._500({ message: 'Internal ERROR' });
-    // });
     const customer=await dynamov1.get(ID,(err)=>{
       if(err){
         console.log('error in Dynamo Get', err);
