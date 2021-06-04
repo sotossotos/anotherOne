@@ -13,13 +13,11 @@ jobs:
     steps:
       - checkout
       - run:
-          command: sudo npm i -g serverless npm@latest
-      - run:
           command: npm install
       - run:
           command: ./.circleci/install-cred.sh
       - run:
-          command: sls deploy
+          command: npx sls deploy
 
 
 workflows:
