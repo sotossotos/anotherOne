@@ -1,4 +1,5 @@
 'use strict'
+// First try of creating lambda
 const AWS = require("aws-sdk");
 exports.handler = async (event) => {
     return {
