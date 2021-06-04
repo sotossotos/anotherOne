@@ -1,5 +1,6 @@
 const Responses = require('../utils/API_Responses');
 const Dynamo = require('../utils/Dynamo');
+const dynamov1=require('../../tables/customer');
 
 const tableName = process.env.tableName;
  /*
@@ -13,9 +14,15 @@ exports.handler = async event => {
 
     const ID = event.pathParameters.ID;
 
-    const customer = await Dynamo.get(ID, tableName).catch(err => {
+    // const customer = await Dynamo.get(ID, tableName).catch(err => {
+    //     console.log('error in Dynamo Get', err);
+    //     return Responses._500({ message: 'Internal ERROR' });
+    // });
+    const customer=await dynamov1.get(ID,(err)=>{
+      if(err){
         console.log('error in Dynamo Get', err);
         return Responses._500({ message: 'Internal ERROR' });
+      }
     });
 
     if (!customer) {
