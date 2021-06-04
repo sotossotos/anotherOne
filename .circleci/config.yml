@@ -27,8 +27,8 @@ workflows:
     jobs:
       - build-and-deploy:
           context: serverlessProject
-            filters:
-              branches:
-                only:
-                  - main
+          filters:
+            branches:
+              only:
+                - main
                 
