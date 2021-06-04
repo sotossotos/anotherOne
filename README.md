@@ -10,6 +10,12 @@
  - sls dynamodb install
  - npm install --save-dev jest
  - npm install --save-dev @shelf/jest-dynamodb
+ - npm install join
+ - npm install --save-dev join
+ - npm install --save-dev serverless-plugin-scripts
 
 ## Execution/Run
- - Command "sls offline (start)" start can be omitted.
+ - Command "sls offline (start) --location ." start can be omitted.
+
+## Tools
+ - To generate json tables https://dynobase.dev/dynamodb-table-schema-design-tool/ 

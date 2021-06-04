@@ -5,7 +5,7 @@ const customerSchema= require('../../tables/customer-schema');
 const tableName = process.env.tableName;
 exports.handler = async event => {
 
-    let ID = event.pathParameters.ID;
+    const ID = event.pathParameters.ID;
     const customer = JSON.parse(event.body);
     customer.ID = ID;
     //res has value and error fields
@@ -16,7 +16,7 @@ exports.handler = async event => {
     }
     const newCustomer = await Dynamo.write(customer, tableName).catch(err => {
         console.log('error in dynamo write', err);
-        return null;
+        return Responses._500({ message: 'Internal ERROR' });
     });
 
     if (!newCustomer) {

@@ -92,7 +92,7 @@ content-type: application/json
 {
     "name": "sotiris",
     "surname": "loizou",
-    "birth_year": "1900"
+    "birthYear": "1900"
 }
 
 ###
