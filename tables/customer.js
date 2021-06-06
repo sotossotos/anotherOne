@@ -8,6 +8,13 @@ if (process.env.IS_OFFLINE) {
         endpoint: 'http://localhost:8000',
     };
 }
+if (process.env.JEST_WORKER_ID){
+  options={
+      endpoint: 'http://localhost:8000',
+      region: 'local-env',
+      sslEnabled: false,
+  };
+}
 dynamov1.AWS.config.update(options);
 const Customer = dynamov1.define('customer-table', {
   hashKey : 'ID',

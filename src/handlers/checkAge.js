@@ -6,10 +6,11 @@ const AWS = require("aws-sdk");
  * This API gateway checks age limit
  * 
  * 
- * @param {*} event 
+ * @param { ApiGateway} event 
  * @returns 
  */
 exports.handler = async (event) => {
+    
     let age = String(event.pathParameters.AGE);
     console.log(event);
     const user = JSON.parse(event.body);
