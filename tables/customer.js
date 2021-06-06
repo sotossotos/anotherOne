@@ -21,4 +21,4 @@ const Customer = dynamov1.define('customer-table', {
   tableName:'customer-table'
 });
 
-module.exports = Customer;
+module.exports = Customer,dynamov1;
