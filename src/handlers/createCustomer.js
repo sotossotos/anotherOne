@@ -2,9 +2,16 @@ const Responses = require('../utils/API_Responses');
 const Dynamo = require('../utils/Dynamo');
 const customerTable = require('../../tables/customer');
 const customerSchema= require('../../tables/customer-schema');
-
-//const tableName = process.env.tableName;
 const tableName="customer-table";
+//const tableName = process.env.tableName;
+
+/**
+ * This API gateway creates new customer item 
+ * 
+ * 
+ * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
+ * @returns {import('../utils/API_Responses')} 
+ */
 exports.handler = async event => {
     console.log(event);
     if (!event.pathParameters || !event.pathParameters.ID) {

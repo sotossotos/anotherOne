@@ -13,6 +13,7 @@
  - npm install join
  - npm install --save-dev join
  - npm install --save-dev serverless-plugin-scripts
+ - npm install serverless-s3-local --save-dev
 
 ## Execution/Run
  - Command "sls offline (start) --location ." start can be omitted.

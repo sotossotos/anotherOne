@@ -3,6 +3,11 @@ const Dynamo = require('../utils/Dynamo');
 const customerSchema= require('../../tables/customer-schema');
 
 const tableName = process.env.tableName;
+/**
+ * 
+ * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
+ * @returns {import('../utils/API_Responses')}
+ */
 exports.handler = async event => {
 
     const ID = event.pathParameters.ID;

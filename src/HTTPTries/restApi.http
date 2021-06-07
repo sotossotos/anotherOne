@@ -149,7 +149,7 @@ content-type: application/json
     "birthYear": "2005"
 }
 ###
-GET {{host}}/dev/customer/33333
+GET {{host}}/dev/customer/22222
 
 ###
 POST https://x2kzg20gw3.execute-api.eu-west-2.amazonaws.com/dev/strict-customer/12345
@@ -168,3 +168,7 @@ GET {{host}}/dev/get-strict-customer/2
 
 ###
 GET {{host}}/dev/get-strict-customer/fasd
+
+
+###
+GET {{host}}/dev/file/fileMark

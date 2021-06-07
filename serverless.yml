@@ -9,13 +9,16 @@ provider:
   region: eu-west-2
   environment:
         tableName: ${self:custom.tableName}
+        bucketName: ${self:custom.bucketName}
   iamRoleStatements:
         - Effect: Allow
           Action:
               - dynamodb:*
+              - s3:*
           Resource: '*'
 plugins:
     - serverless-webpack
+    - serverless-s3-local
     - serverless-offline
     - serverless-dynamodb-local
     - serverless-plugin-scripts
@@ -23,6 +26,7 @@ package:
     individually: true
 custom:
     tableName: customer-table
+    bucketName: local-bucket-upload
     dynamodb:
         stages:
             - dev
@@ -40,6 +44,10 @@ custom:
       includeModules: false # Node modules configuration for packaging
       packager: 'npm' # Packager that will be used to package your external modules
       excludeFiles: src/**/*.test.js # Provide a glob for files to ignore
+    s3:
+      host: localhost
+      port: 7000
+      directory: ./s3-local
 functions:
   up:
     handler: src/handlers/up.handler
@@ -83,8 +91,26 @@ functions:
           method: GET
           path: /customer/{ID}
           cors: true  
+  createFile:
+    handler: src/handlers/createFile.handler
+    events:
+      - http:
+          method: POST
+          path: file/{fName}
+          cors: true
+  getFile:
+    handler: src/handlers/getFile.handler
+    events:
+      - http:
+          method: GET  
+          path: file/{fName}
+          cors: true  
 resources:
     Resources:
+        DemoBucketUpload:
+          Type: AWS::S3::Bucket
+          Properties:
+            BucketName: ${self:custom.bucketName}
         MyDynamoDbTable:
             Type: AWS::DynamoDB::Table
             Properties:
