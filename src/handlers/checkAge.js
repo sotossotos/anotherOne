@@ -1,8 +1,8 @@
 'use strict'
-const Responses = require('../utils/API_Responses');
-// import Responses from ('../utils/API_Responses');
-const AWS = require("aws-sdk");
-// import AWS from 'aws-sdk';
+// const Responses = require('../utils/API_Responses');
+// const AWS = require("aws-sdk");
+import Responses from '../utils/API_Responses';
+import AWS from 'aws-sdk';
 /**
  * This API gateway checks age limit for over/under certain age(18)
  * 

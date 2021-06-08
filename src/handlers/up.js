@@ -1,7 +1,6 @@
 //'use strict'
 // First try of creating lambda
-// const Responses = require('../utils/API_Responses');
-// const AWS = require("aws-sdk");
+
 import Responses from '../utils/API_Responses.js';
 import AWS from 'aws-sdk' ;
 /**
@@ -23,3 +22,4 @@ exports.handler = async (event) => {
     // }
     return Responses._200({statusCode:'success',message:'AnotherOne is Running !',input: event});
   }
+  

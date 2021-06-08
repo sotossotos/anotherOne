@@ -1,5 +1,5 @@
-const AWS = require('aws-sdk');
-// import AWS from('aws-sdk');
+// const AWS = require('aws-sdk');
+import AWS from 'aws-sdk' ;
 
 const s3Client = new AWS.S3({  
   s3ForcePathStyle: true,
@@ -8,7 +8,7 @@ const s3Client = new AWS.S3({
   accessKeyId: 'S3RVER',
   secretAccessKey: 'S3RVER'});
 
-const S3 = {
+export const S3 = {
     async get(fileName, bucket) {
         
         const params = {
@@ -44,4 +44,3 @@ const S3 = {
     },
 };
 
-module.exports = S3;

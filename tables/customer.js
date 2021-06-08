@@ -1,8 +1,8 @@
-let dynamov1=require('dynamodb');
-const joi =require('joi');
+// let dynamov1=require('dynamodb');
+// const joi =require('joi');
 
-// import  dynamov1 from('dynamodb');
-// import joi from ('joi');
+import  dynamov1 from 'dynamodb' ;
+import joi from  'joi';
 let options = {};
 
 if (process.env.IS_OFFLINE) {
@@ -19,7 +19,7 @@ if (process.env.JEST_WORKER_ID){
   };
 }
 dynamov1.AWS.config.update(options);
-const Customer = dynamov1.define('customer-table', {
+export const Customer = dynamov1.define('customer-table', {
   hashKey : 'ID',
  
   schema : {
@@ -31,4 +31,3 @@ const Customer = dynamov1.define('customer-table', {
   tableName:'customer-table'
 });
 
-module.exports = Customer;

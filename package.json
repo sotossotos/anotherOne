@@ -19,12 +19,7 @@
     "serverless-offline": "^7.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/node": "^7.14.2",
-    "@babel/preset-env": "^7.14.4",
-    "@babel/register": "^7.13.16",
     "@shelf/jest-dynamodb": "^1.8.1",
-    "babel-loader": "^8.2.2",
     "jest": "^27.0.3",
     "serverless-plugin-scripts": "^1.0.2",
     "serverless-s3-local": "^0.6.17",

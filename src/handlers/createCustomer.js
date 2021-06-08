@@ -1,11 +1,10 @@
-const Responses = require('../utils/API_Responses');
-const Dynamo = require('../utils/Dynamo');
-const customerTable = require('../../tables/customer');
-const customerSchema= require('../../tables/customer-schema');
-// import Responses from('../utils/API_Responses');
-// import Dynamo from ('../utils/Dynamo');
-// import customerTable from('../../tables/customer');
-// import customerSchema from ('../../tables/customer-schema');
+// const Responses = require('../utils/API_Responses');
+// const Dynamo = require('../utils/Dynamo');
+// const customerTable = require('../../tables/customer');
+// const customerSchema= require('../../tables/customer-schema');
+import Responses from '../utils/API_Responses';
+import {Customer} from '../../tables/customer';
+import {customerSchema} from '../../tables/customer-schema';
 //const tableName="customer-table";
 const tableName = process.env.tableName;
 
@@ -32,7 +31,7 @@ exports.handler = async event => {
     let newCustomer;
     
     try{
-      newCustomer=new customerTable(customer);
+      newCustomer=new Customer(customer);
       await newCustomer.save();
     }catch(err){
       console.log('error in dynamo write', err);

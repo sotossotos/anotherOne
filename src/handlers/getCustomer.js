@@ -1,8 +1,8 @@
-const Responses = require('../utils/API_Responses');
-const Dynamo = require('../utils/Dynamo');
-const customerTable=require('../../tables/customer');
-// import Responses from('../utils/API_Responses');
-// import customerTable from('../../tables/customer');
+// const Responses = require('../utils/API_Responses');
+// const Dynamo = require('../utils/Dynamo');
+// const customerTable=require('../../tables/customer');
+import Responses from '../utils/API_Responses';
+import {Customer} from '../../tables/customer';
 
 const tableName = process.env.tableName;
 
@@ -19,7 +19,7 @@ exports.handler = async event => {
     const ID = event.pathParameters.ID;
     let customer;
     try{
-      customer =await customerTable.get(ID);
+      customer =await Customer.get(ID);
     }catch(err){
       console.log('error in dynamo write', err);
       return  Responses._500({ message: 'Internal ERROR' });

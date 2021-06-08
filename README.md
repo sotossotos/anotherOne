@@ -16,7 +16,7 @@
  - npm install serverless-s3-local --save-dev
 
 ## Execution/Run
- - Command "sls offline (start) --location ." start can be omitted.
+ - Command "sls offline (start)" start can be omitted.
 
 ## Tools
  - To generate json tables https://dynobase.dev/dynamodb-table-schema-design-tool/ 
