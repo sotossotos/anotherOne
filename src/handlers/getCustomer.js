@@ -1,13 +1,16 @@
 const Responses = require('../utils/API_Responses');
-//const Dynamo = require('../utils/Dynamo');
+const Dynamo = require('../utils/Dynamo');
 const customerTable=require('../../tables/customer');
+// import Responses from('../utils/API_Responses');
+// import customerTable from('../../tables/customer');
 
 const tableName = process.env.tableName;
- /*
-    
-  */
 
-var printTheAccount
+/**
+ * 
+ * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
+ * @returns {import('../utils/API_Responses')}
+ */
 exports.handler = async event => {
 
     if (!event.pathParameters || !event.pathParameters.ID) {

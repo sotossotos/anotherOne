@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+// import AWS from('aws-sdk');
 
 const s3Client = new AWS.S3({  
   s3ForcePathStyle: true,
@@ -20,7 +21,7 @@ const S3 = {
         if (!data) {
             throw Error(`Failed to get file ${fileName}, from ${bucket}`);
         }
-
+        // if it is a json file then data should be json object
         if (/\.json$/.test(fileName)) {
             data = JSON.parse(data.Body.toString());
         }

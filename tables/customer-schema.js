@@ -1,5 +1,6 @@
 
 const joi =require('joi');
+// import joi from ('joi');
 
 const customerSchema=joi.object().keys({
     ID:joi.string().alphanum().min(5).required(),

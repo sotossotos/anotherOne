@@ -1,0 +1,397 @@
+openapi: 3.0.1
+info:
+  title: File Uploads Service
+  description: File Uploads Service
+  version: 1.0.0
+externalDocs:
+  description: External location of api docs
+  url: https://api.ecotricity.co.uk/docs/?url=file-uploads-service/1.0.0.json
+servers:
+  - url: https://online.ecotricity.co.uk/
+paths:
+  /v1/customers/{customerId}/accounts/{accountId}/file-uploads:
+    post:
+      tags:
+        - Post File Upload Request
+      summary: Posts a file upload request
+      description: Processes a file upload request - returning a signed S3 URL and saving an upload record
+      parameters:
+        - name: customerId
+          in: path
+          description: Customer ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: accountId
+          in: path
+          description: Account ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Authorization
+          in: header
+          description: Access token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/FileUploadRequestBody'
+      responses:
+        200:
+          $ref: '#/components/responses/FileUploadSuccessResponse'
+        400:
+          $ref: '#/components/responses/FailValidationResponse'
+        500:
+          $ref: '#/components/responses/ErrorResponse'
+    get:
+      tags:
+        - Search Customer Files
+      summary: Search Customer Files
+      description: Search for customer files using date filters and return the signed URLs for them. If no date filters are supplied then all files are returned
+      parameters:
+        - name: Authorization
+          in: header
+          description: Access token
+          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6Ijhm...
+          required: true
+          schema:
+            type: string
+        - name: customerId
+          in: path
+          description: Customer ID
+          example: 5f5e3850-cf4e-44f8-a478-93bdc1d02ac3
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: accountId
+          in: path
+          description: Account ID
+          example: e72e9de9-9380-404e-b344-ae62cd27581c
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: fromDate
+          in: query
+          description: Earliest date to fetch files for
+          example: '2021-01-01'
+          schema:
+            type: string
+            format: YYYY-MM-DD
+        - name: toDate
+          in: query
+          description: >
+            Latest date to fetch files for. If a `fromDate` is supplied and the `toDate` omitted, a `toDate` of the current date will be used.
+            If a `toDate` is supplied that is before the `fromDate`, then the `fromDate` will be used as the `toDate` instead, only searching files for a single day
+          example: '2021-01-30'
+          schema:
+            type: string
+            format: YYYY-MM-DD
+        - name: limit
+          in: query
+          description: The maximum number of files to return. Hard limit of 100, default of 10 if not supplied
+          example: 10
+          schema:
+            type: number
+        - name: offset
+          in: query
+          description: The offset of the results
+          example: 1
+          schema:
+            type: number
+      responses:
+        200:
+          $ref: '#/components/responses/SearchCustomerFilesSuccessResponse'
+        400:
+          $ref: '#/components/responses/FailValidationResponse'
+        500:
+          $ref: '#/components/responses/ErrorResponse'
+
+  /v1/customers/{customerId}/accounts/{accountId}/uploads/{uploadId}:
+    delete:
+      tags:
+        - Delete File Upload
+      summary: Deletes a file upload
+      description: Deletes a file upload, deleting it from the database and s3
+      parameters:
+        - name: customerId
+          in: path
+          description: Customer ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: accountId
+          in: path
+          description: Account ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: uploadId
+          in: path
+          description: Upload ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Authorization
+          in: header
+          description: Access token
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/responses/EmptySuccess'
+        500:
+          $ref: '#/components/responses/ErrorResponse'
+
+  /v1/customers/{customerId}/accounts/{accountId}/signed-urls:
+    post:
+      tags:
+        - Generate signed urls
+      summary: Generates signed urls for a supplied list of upload ids
+      description: Given a list of uploadIds - generate a signed url for each upload and returns them in a list
+      parameters:
+        - name: customerId
+          in: path
+          description: Customer ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: accountId
+          in: path
+          description: Account ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Authorization
+          in: header
+          description: Access token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/SignedUrlsRequestBody"
+      responses:
+        200:
+          $ref: "#/components/responses/GenerateSignedUrlsSuccessResponse"
+        400:
+          $ref: "#/components/responses/FailValidationResponse"
+        500:
+          $ref: "#/components/responses/ErrorResponse"
+
+components:
+  responses:
+    FileUploadSuccessResponse:
+      description: success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: success
+              data:
+                type: object
+                $ref: '#/components/schemas/SuccessUpload'
+
+    GenerateSignedUrlsSuccessResponse:
+      description: success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: success
+              data:
+                type: object
+                properties:
+                  results:
+                    $ref: '#/components/schemas/SignedUrlsList'
+
+    SearchCustomerFilesSuccessResponse:
+      description: success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: success
+              data:
+                type: object
+                properties:
+                  results:
+                    $ref: '#/components/schemas/SignedUrlsList'
+                  hasMore:
+                    type: boolean
+                    example: true
+
+    FailValidationResponse:
+      description: fail
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: fail
+              data:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                          example: 'The supplied filename has an invalid extension for an image'
+
+    SuccessfulActionResponse:
+      description: Successful action
+      content:
+        application/json:
+          schema: 
+            type: object
+            properties:
+              status:
+                type: string
+                example: success
+              data:
+                type: object
+                default: {}
+
+    ErrorResponse:
+      description: Unknown error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: error
+              message:
+                type: string
+                enum:
+                  - Something went wrong
+
+    EmptySuccess:
+      description: Success/2xx response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: object
+                example: success
+              data:
+                type: object
+                example: '{}'
+
+  requestBodies:
+    FileUploadRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - filename
+              - fileHash
+              - category
+              - links
+            properties:
+              filename:
+                type: string
+                description: The filename being uploaded
+                example: 'upload.jpg'
+              fileHash:
+                type: string
+                description: MD5 hash of the file being uploaded
+                example: cGFzc3dvcmRhZHNhZGFkYWRhZHNhZGFzZHNhZGFzZGEK
+              category:
+                type: string
+                description: The category the file being uploaded belongs to
+                enum:
+                  - meter-reads
+              links:
+                type: array
+                description: Array of resource ID's that the file upload is related to
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: ID of the linked resource
+                      example: 3921d202-ab7b-454b-9816-9d660a9b7c94
+                    type:
+                      type: string
+                      description: type of the linked resource
+                      example: meter-reads
+
+    SignedUrlsRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - filename
+              - fileHash
+              - category
+              - links
+            properties:
+              uploadIds:
+                type: array
+                items:
+                  type: string
+                  example: 3921d202-ab7b-454b-9816-9d660a9b7c94
+
+  schemas:
+    SuccessUpload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the upload resource
+          example: 3921d202-ab7b-454b-9816-9d660a9b7c94
+        signedUrl:
+          type: string
+          description: The signed URL with the signature to allow you to upload to the S3 bucket
+          example: http://localhost:4572/eco-file-uploads-service-test/test.ai?AWSAccessKeyId=none&Expires=1605101596&Signature=X5JFOyYt%2F6yT0mJ8D0WWpZ0%2B81A%3D
+
+    SignedUrlsList:
+      type: array
+      items:
+        type: object
+        properties:
+          uploadId:
+            type: string
+            format: uuid
+            description: ID of the upload resource
+            example: 3921d202-ab7b-454b-9816-9d660a9b7c94
+          thumbnail:
+            type: string
+            description: Signed url for the thumbnail image
+            example: https://localhost:8080/customers/e5eafc8d-7d2e-41bb-8a83-351fa5c09672/accounts/924ea9ee-ad2a-4d16-a0e3-0f1dfb0ba4ad/uploads/b02fb85a-bc4f-4e5b-a499-4f278ffead73-thumbnail?Expires=1615370805&Key-Pair-Id=%5Bobject%20Object%5D&Signature=gWERufHMOFERtTzTAAgoS54l1tB5AQ2a4QuS4UCj33c0bdYMM1YYDX8xp87CaiN4f7SLHnjuL2NVXzp2prN4DEm9tyR~E3KniaM58~GkWqGdESslXtyDuXZJ7ji5nZH~pthqC-iwocnoogilflOi3HZMP8M~nhn~~8xwJ0JlAvU_
+          standard:
+            type: string
+            description: Signed url for the standard image
+            example: https://localhost:8080/customers/e5eafc8d-7d2e-41bb-8a83-351fa5c09672/accounts/924ea9ee-ad2a-4d16-a0e3-0f1dfb0ba4ad/uploads/b02fb85a-bc4f-4e5b-a499-4f278ffead73-standard?Expires=1615370805&Key-Pair-Id=%5Bobject%20Object%5D&Signature=gWERufHMOFERtTzTAAgoS54l1tB5AQ2a4QuS4UCj33c0bdYMM1YYDX8xp87CaiN4f7SLHnjuL2NVXzp2prN4DEm9tyR~E3KniaM58~GkWqGdESslXtyDuXZJ7ji5nZH~pthqC-iwocnoogilflOi3HZMP8M~nhn~~8xwJ0JlAvU_
+

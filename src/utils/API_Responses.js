@@ -1,4 +1,4 @@
-const Responses = {
+let Responses = {
     _DefineResponse(statusCode = 502, data = {}) {
         return {
             headers: {

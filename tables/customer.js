@@ -1,5 +1,8 @@
 let dynamov1=require('dynamodb');
 const joi =require('joi');
+
+// import  dynamov1 from('dynamodb');
+// import joi from ('joi');
 let options = {};
 
 if (process.env.IS_OFFLINE) {

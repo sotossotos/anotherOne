@@ -171,4 +171,16 @@ GET {{host}}/dev/get-strict-customer/fasd
 
 
 ###
-GET {{host}}/dev/file/fileMark
+GET {{host}}/dev/file/fileMark.json
+
+###
+POST {{host}}/dev/file/fileMark.json
+content-type: application/json
+
+{
+    "name": "Mark",
+    "birthCity": "London",
+    "countryOrigin": "England",
+    "languages": ["English","Russian","German"],
+    "birthYear": "2005"
+}

@@ -1,16 +1,16 @@
 'use strict'
 const Responses = require('../utils/API_Responses');
+// import Responses from ('../utils/API_Responses');
 const AWS = require("aws-sdk");
-
+// import AWS from 'aws-sdk';
 /**
- * This API gateway checks age limit
+ * This API gateway checks age limit for over/under certain age(18)
  * 
  * 
- * @param { ApiGateway} event 
- * @returns 
+ * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
+ * @returns {JSON}
  */
 exports.handler = async (event) => {
-    
     let age = String(event.pathParameters.AGE);
     console.log(event);
     const user = JSON.parse(event.body);
