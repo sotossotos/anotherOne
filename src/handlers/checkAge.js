@@ -1,13 +1,15 @@
 'use strict'
-const Responses = require('../utils/API_Responses');
-const AWS = require("aws-sdk");
-
+// const Responses = require('../utils/API_Responses');
+// const AWS = require("aws-sdk");
+import Responses from '../utils/API_Responses';
+import types from 'aws-lambda';
+import AWS from 'aws-sdk';
 /**
- * This API gateway checks age limit
+ * This API gateway checks age limit for over/under certain age(18)
  * 
  * 
- * @param {*} event 
- * @returns 
+ * @param { types.APIGatewayProxyEvent} event 
+ * @returns {JSON}
  */
 exports.handler = async (event) => {
     let age = String(event.pathParameters.AGE);

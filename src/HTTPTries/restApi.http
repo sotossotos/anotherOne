@@ -37,7 +37,7 @@ content-type: application/json
 } 
 ###
 
-POST {{host}}/dev/age-restriction/fasd
+POST {{host}}/dev/age-restriction/20
 content-type: application/json
 
 {
@@ -76,25 +76,26 @@ content-type: application/json
 }
 
 ###
-POST {{host}}/dev/customer/1
+POST {{host}}/dev/customer/12345
 content-type: application/json
 
 {
     "name": "sotiris",
-    "surname": "loizou"
+    "surname": "loizou",
+    "birthYear":1900
 }
 
 ###
-GET {{host}}/dev/customer/1
+GET {{host}}/dev/customer/22341
 
 ###
 GET {{host}}/dev/customer/2
 
 ###
-GET {{host}}/dev/customer/fasd
+GET {{host}}/dev/customer/afsd
 
 ###
-POST {{host}}/dev/strict-customer/22341
+POST {{host}}/dev/strict-customer/11111
 content-type: application/json
 
 {
@@ -102,6 +103,63 @@ content-type: application/json
     "surname": "loizou",
     "birthYear": "1900"
 }
+###
+POST {{host}}/dev/strict-customer/22222
+content-type: application/json
+
+{
+    "name": "andreas",
+    "surname": "antoniou",
+    "birthYear": "2000"
+}
+###
+POST {{host}}/dev/strict-customer/33333
+content-type: application/json
+
+{
+    "name": "tofias",
+    "surname": "raxou",
+    "birthYear": "2005"
+}
+###
+POST {{host}}/dev/customer/11111
+content-type: application/json
+
+{
+    "name": "sotiris",
+    "surname": "loizou",
+    "birthYear": "1900"
+}
+###
+POST {{host}}/dev/customer/22222
+content-type: application/json
+
+{
+    "name": "andreas",
+    "surname": "antoniou",
+    "birthYear": "2000"
+}
+###
+POST {{host}}/dev/strict-customer/2345234
+content-type: application/json
+
+{
+    "name": "tofias",
+    "surname": "raxou",
+    "birthYear": "2005"
+}
+###
+
+POST {{host}}/dev/customer/12
+content-type: application/json
+
+{
+    "name": "tofias",
+    
+    "birthYear": "2005"
+}
+###
+GET {{host}}/dev/customer/22222
 
 ###
 POST https://x2kzg20gw3.execute-api.eu-west-2.amazonaws.com/dev/strict-customer/12345
@@ -113,10 +171,26 @@ content-type: application/json
     "birthYear": "2000"
 }
 ###
-GET {{host}}/dev/get-strict-customer/22341
+GET {{host}}/dev/customer/22222
 
 ###
 GET {{host}}/dev/get-strict-customer/2
 
 ###
 GET {{host}}/dev/get-strict-customer/fasd
+
+
+###
+GET {{host}}/dev/file/fileMark.json
+
+###
+POST {{host}}/dev/file/fileMark.json
+content-type: application/json
+
+{
+    "name": "Mark",
+    "birthCity": "Londona",
+    "countryOrigin": "England",
+    "languages": ["English","Russian","German"],
+    "birthYear": "2005"
+}

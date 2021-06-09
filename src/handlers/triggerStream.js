@@ -1,5 +1,4 @@
-//'use strict'
-// First try of creating lambda
+
 
 import Responses from '../utils/API_Responses.js';
 import AWS from 'aws-sdk' ;
@@ -9,6 +8,6 @@ import AWS from 'aws-sdk' ;
  * @returns {JSON}
  */
 exports.handler = async (event) => {
-    return Responses._200({statusCode:'success',message:'AnotherOne is Running !',input: event});
+    console.log(event);
+    console.log(event.Records[0]);
   }
-  

@@ -1,0 +1,52 @@
+openapi: 3.0.1
+info:
+  title: Simple Customer Service
+  description: Maintaining customer entity
+  version: 1.0.0
+paths:
+  /dev/live:
+    get:
+      tags:
+        - Service Checker
+      summary: Service Checker
+      description: Checks if the service is up and running
+      parameters:
+      responses:
+        200:
+          $ref: '#/components/responses/liveResponse'
+components:
+  responses:
+    liveResponse:
+      description: success
+      content:
+        application/json:
+          schema:
+            type:  object
+            properties:
+              status:
+                type: string
+                example: success
+              message:
+                type: string
+                example: (ServiceName) is Running !
+              event:
+                type: Object
+                example: JSON{Attributes}-Object
+                properties: 
+              
+     
+                    
+  schemas:
+    successPing:
+      type: array
+      items:
+        type: object
+        properties:
+          statusCode:
+            type: string
+            description: describes the action's outcome
+            example: success or failure
+          message:
+            type: string
+            description: Specific message that shows up STATIC
+            example: (ServiceName) is Running !

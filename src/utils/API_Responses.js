@@ -1,4 +1,10 @@
-const Responses = {
+let Responses = {
+  /**
+   * 
+   * @param {Number} statusCode 
+   * @param {JSON} data 
+   * @returns {JSON}
+   */
     _DefineResponse(statusCode = 502, data = {}) {
         return {
             headers: {
@@ -10,17 +16,35 @@ const Responses = {
             body: JSON.stringify(data),
         };
     },
-
+    /**
+     * 
+     * @param {JSON} data 
+     * @returns {JSON} 
+     */
     _200(data = {}) {
         return this._DefineResponse(200, data);
     },
-
+    /**
+     * 
+     * @param {JSON} data 
+     * @returns {JSON} 
+     */
     _400(data = {}) {
         return this._DefineResponse(400, data);
     },
+    /**
+     * 
+     * @param {JSON} data 
+     * @returns {JSON} 
+     */
     _404(data = {}) {
         return this._DefineResponse(404, data);
     },
+    /**
+     * 
+     * @param {JSON} data 
+     * @returns {JSON}
+     */
     _500(data = {}) {
         return this._DefineResponse(500, data);
     },

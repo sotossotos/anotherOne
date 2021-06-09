@@ -1,6 +1,3 @@
-// const Responses = require('../utils/API_Responses');
-// const Dynamo = require('../utils/Dynamo');
-// const customerTable=require('../../tables/customer');
 import Responses from '../utils/API_Responses';
 import {Customer} from '../../tables/customer';
 
@@ -21,13 +18,16 @@ exports.handler = async event => {
     try{
       customer =await Customer.get(ID);
     }catch(err){
-      console.log('error in dynamo write', err);
+      console.log('error in dynamo read', err);
       return  Responses._500({ message: 'Internal ERROR' });
     }
-  
-    if (!customer) {
-        return Responses._404({ message: 'Failed to get customer with specified ID' });
+    if(!customer)return Responses._400({message:`The customer with iD-> ${ID} doesn't exist`})
+    try{
+       res=await Customer.destroy(ID);
+    }catch(err){
+      console.log('error in dynamo deletion', err);
+      return  Responses._500({ message: 'Internal ERROR' });
     }
-
-    return Responses._200(customer.attrs );
+    console.log(res);
+    return Responses._200({message: `Successful deletion of customer with ID -> ${ID}`} );
 };
