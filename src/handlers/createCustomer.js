@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-const Responses = require('../utils/API_Responses');
-//const Dynamo = require('../utils/Dynamo');
-const dynamov1=require('../../tables/customer');
-=======
 // const Responses = require('../utils/API_Responses');
 // const Dynamo = require('../utils/Dynamo');
 // const customerTable = require('../../tables/customer');
@@ -12,7 +7,6 @@ import {Customer} from '../../tables/customer';
 import {customerSchema} from '../../tables/customer-schema';
 //const tableName="customer-table";
 const tableName = process.env.tableName;
->>>>>>> npmDynamodbMigrate
 
 /**
  * This API gateway creates new customer item 
@@ -30,23 +24,6 @@ exports.handler = async event => {
     console.log(`This is the ID -> ${ID} !`);
     const customer = JSON.parse(event.body);
     customer.ID = ID;
-<<<<<<< HEAD
-    // Changed tableName -> process.env.tableName
-    // const newCustomer = await Dynamo.write(customer, tableName).catch(err => {
-    //     console.log('error in dynamo write', err);
-    //     return  Responses._500({ message: 'Internal ERROR' });
-    // });
-    let newCustomer;
-    await dynamov1.create(customer,(err)=>{
-      if(err){
-        console.log('error in Dynamo Get', err);
-        return Responses._500({ message: 'Internal ERROR' });
-      }else{
-        newCustomer=customer;
-      }
-    });
-    console.log(newCustomer)
-=======
     const res=customerSchema.validate(customer);
     if(typeof(res.error)!== 'undefined'){
         const errorMsg=res.error.message.replace(/"/g,'');
@@ -65,7 +42,6 @@ exports.handler = async event => {
       
     }
 
->>>>>>> npmDynamodbMigrate
     if (!newCustomer) {
         return Responses._500({ message: 'Internal ERROR' });
     }

@@ -1,0 +1,53 @@
+[1mdiff --git a/src/handlers/createCustomer.js b/src/handlers/createCustomer.js[m
+[1mindex 4569854..c8b6a23 100644[m
+[1m--- a/src/handlers/createCustomer.js[m
+[1m+++ b/src/handlers/createCustomer.js[m
+[36m@@ -1,8 +1,3 @@[m
+[31m-<<<<<<< HEAD[m
+[31m-const Responses = require('../utils/API_Responses');[m
+[31m-//const Dynamo = require('../utils/Dynamo');[m
+[31m-const dynamov1=require('../../tables/customer');[m
+[31m-=======[m
+ // const Responses = require('../utils/API_Responses');[m
+ // const Dynamo = require('../utils/Dynamo');[m
+ // const customerTable = require('../../tables/customer');[m
+[36m@@ -12,7 +7,6 @@[m [mimport {Customer} from '../../tables/customer';[m
+ import {customerSchema} from '../../tables/customer-schema';[m
+ //const tableName="customer-table";[m
+ const tableName = process.env.tableName;[m
+[31m->>>>>>> npmDynamodbMigrate[m
+ [m
+ /**[m
+  * This API gateway creates new customer item [m
+[36m@@ -30,23 +24,6 @@[m [mexports.handler = async event => {[m
+     console.log(`This is the ID -> ${ID} !`);[m
+     const customer = JSON.parse(event.body);[m
+     customer.ID = ID;[m
+[31m-<<<<<<< HEAD[m
+[31m-    // Changed tableName -> process.env.tableName[m
+[31m-    // const newCustomer = await Dynamo.write(customer, tableName).catch(err => {[m
+[31m-    //     console.log('error in dynamo write', err);[m
+[31m-    //     return  Responses._500({ message: 'Internal ERROR' });[m
+[31m-    // });[m
+[31m-    let newCustomer;[m
+[31m-    await dynamov1.create(customer,(err)=>{[m
+[31m-      if(err){[m
+[31m-        console.log('error in Dynamo Get', err);[m
+[31m-        return Responses._500({ message: 'Internal ERROR' });[m
+[31m-      }else{[m
+[31m-        newCustomer=customer;[m
+[31m-      }[m
+[31m-    });[m
+[31m-    console.log(newCustomer)[m
+[31m-=======[m
+     const res=customerSchema.validate(customer);[m
+     if(typeof(res.error)!== 'undefined'){[m
+         const errorMsg=res.error.message.replace(/"/g,'');[m
+[36m@@ -65,7 +42,6 @@[m [mexports.handler = async event => {[m
+       [m
+     }[m
+ [m
+[31m->>>>>>> npmDynamodbMigrate[m
+     if (!newCustomer) {[m
+         return Responses._500({ message: 'Internal ERROR' });[m
+     }[m

@@ -31,7 +31,3 @@ export const Customer = dynamov1.define('customer-table', {
   tableName:'customer-table'
 });
 
-<<<<<<< HEAD
-module.exports = Customer,dynamov1;
-=======
->>>>>>> npmDynamodbMigrate
