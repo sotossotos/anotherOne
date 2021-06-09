@@ -27,21 +27,26 @@ components:
                 type: string
                 example: success
               message:
-                type: object
+                type: string
+                example: (ServiceName) is Running !
+              event:
+                type: Object
+                example: JSON{Attributes}-Object
                 properties: 
-                  example: 
-                  results:
-                    $ref: '#/componenets/schemas/successPing'
+              
+     
                     
   schemas:
     successPing:
-      type: object
-      properties:
-        statusCode:
-          type: string
-          description: describes the action's outcome
-          example: success or failure
-        message:
-          type: string
-          description: Specific message that shows up STATIC
-          example: (ServiceName) is Running !
+      type: array
+      items:
+        type: object
+        properties:
+          statusCode:
+            type: string
+            description: describes the action's outcome
+            example: success or failure
+          message:
+            type: string
+            description: Specific message that shows up STATIC
+            example: (ServiceName) is Running !

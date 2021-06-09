@@ -19,14 +19,34 @@ provider:
 plugins:
     - serverless-webpack
     - serverless-s3-local
-    - serverless-offline
     - serverless-dynamodb-local
     - serverless-plugin-scripts
+    - serverless-plugin-offline-dynamodb-stream
+    - serverless-offline
 package:
     individually: true
 custom:
+  ## This is for the undefined property error (allowCache or useChildProcess)
+    serverless-offline: 
+      allowCache: true
+      ##useChildProcesses: true
     tableName: customer-table
     bucketName: local-bucket-upload
+    dynamodbStream:
+      host: localhost
+      port: 8000
+      region: eu-west-1
+      pollForever: true
+      streams:
+        - table: ${self:custom.tableName}
+          functions:
+            - triggerStream
+    serverless-offline-dynamodb-streams:
+      region: eu-west-1
+      accessKeyId: root
+      secretAccessKey: root
+      skipCacheInvalidation: false
+      readInterval: 500
     dynamodb:
         stages:
             - dev
@@ -55,6 +75,13 @@ functions:
       - http:
           method: GET
           path: /live
+          cors: true
+  delete:
+    handler: src/handlers/deleteCustomer.handler
+    events:
+      - http:
+          method: DELETE
+          path: /customer/{ID}
           cors: true
   greet:
     handler: src/handlers/greet.handler
@@ -105,6 +132,17 @@ functions:
           method: GET  
           path: file/{fName}
           cors: true  
+  triggerStream:
+    handler: src/handlers/triggerStream.handler
+    events:
+      - stream:
+        type: dynamodb
+        batchSize: 1
+        startingPosition: LATEST
+        arn:
+          Fn::GetAtt:
+            - ImagesTable
+            - StreamArn
 resources:
     Resources:
         DemoBucketUpload:
@@ -115,6 +153,8 @@ resources:
             Type: AWS::DynamoDB::Table
             Properties:
                 TableName: ${self:custom.tableName}
+                StreamSpecification:
+                  StreamViewType: NEW_IMAGE
                 AttributeDefinitions:
                     - AttributeName: ID
                       AttributeType: S

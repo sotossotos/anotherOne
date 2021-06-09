@@ -10,17 +10,5 @@ import AWS from 'aws-sdk' ;
  */
 exports.handler = async (event) => {
     let name = String(event.pathParameters.NAME);
-    console.log(name)
-    // return {
-    //   statusCode: 200,
-    //   body: JSON.stringify(
-    //     {
-    //       message: 'Hello User: '+name,
-    //       input: event,
-    //     },
-    //     null,
-    //     2
-    //   ),
-    // }
     return Responses._200({message: `Hello User: ${name}`,input: event});
   }

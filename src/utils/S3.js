@@ -9,6 +9,12 @@ const s3Client = new AWS.S3({
   secretAccessKey: 'S3RVER'});
 
 export const S3 = {
+  /**
+   * 
+   * @param {String} fileName 
+   * @param {String} bucket 
+   * @returns {JSON}
+   */
     async get(fileName, bucket) {
         
         const params = {
@@ -27,6 +33,13 @@ export const S3 = {
         }
         return data;
     },
+    /**
+     * 
+     * @param {JSON} data 
+     * @param {String} fileName 
+     * @param {String} bucket 
+     * @returns {JSON}
+     */
     async write(data, fileName, bucket) {
         const params = {
             Bucket: bucket,
@@ -42,5 +55,27 @@ export const S3 = {
 
         return newData;
     },
+    /**
+     * 
+     * @param {*} imageBuffer 
+     * @param {String} fileName 
+     * @param {String} bucket 
+     * @returns {*}
+     */
+    async writeImage(imageBuffer, fileName, bucket) {
+      const params = {
+          Bucket: bucket,
+          Body: imageBuffer,
+          Key: fileName,
+      };
+
+      const newData = await s3Client.putObject(params).promise();
+
+      if (!newData) {
+          throw Error('there was an error writing the file');
+      }
+
+      return newData;
+  },
 };
 

@@ -21,6 +21,12 @@ if (process.env.JEST_WORKER_ID){
 const documentClient = new AWS.DynamoDB.DocumentClient(options);
 
 export const Dynamo = {
+    /**
+     * 
+     * @param {Number} ID 
+     * @param {String} TableName 
+     * @returns {Map}
+     */
     async get(ID, TableName) {
         const params = {
             TableName,
@@ -37,7 +43,12 @@ export const Dynamo = {
 
         return data.Item;
     },
-
+    /**
+     * 
+     * @param {JSON} data 
+     * @param {String} TableName 
+     * @returns {JSON} 
+     */
     async write(data, TableName) {
         if (!data.ID) {
             throw Error('no ID on the data');

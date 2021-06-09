@@ -16,11 +16,12 @@ const tableName = process.env.tableName;
  * @returns {import('../utils/API_Responses')} 
  */
 exports.handler = async event => {
-    console.log(event);
+    //console.log(event);
     if (!event.pathParameters || !event.pathParameters.ID) {
         return Responses._400({ message: 'missing the ID from the url path' });
     }
-    let ID = event.pathParameters.ID;
+    let ID = event.pathParameters.ID ? event.pathParameters.ID:1;
+    console.log(`This is the ID -> ${ID} !`);
     const customer = JSON.parse(event.body);
     customer.ID = ID;
     const res=customerSchema.validate(customer);
@@ -31,7 +32,7 @@ exports.handler = async event => {
     let newCustomer;
     
     try{
-      newCustomer=new Customer(customer);
+      newCustomer= await new Customer(customer);
       await newCustomer.save();
     }catch(err){
       console.log('error in dynamo write', err);
