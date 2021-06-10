@@ -13,7 +13,6 @@ import AWS from 'aws-sdk';
  */
 exports.handler = async (event) => {
     let age = String(event.pathParameters.AGE);
-    console.log(event);
     const user = JSON.parse(event.body);
     if (!user.name || !user.surname){
         return Responses._400({ message: 'Something wrong with JSON BODY' });
@@ -21,7 +20,6 @@ exports.handler = async (event) => {
     if(isNaN(age)){
         return Responses._400({ message: 'Age parameter expected in url' });
     }
-    console.log(age)
     let check="-limit"
     if (age<18){
         check="under"+check

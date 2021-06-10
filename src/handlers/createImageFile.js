@@ -1,5 +1,6 @@
 const bucket = process.env.bucketName;
 import Responses from '../utils/API_Responses';
+import fs from 'fs'
 import jimp from 'jimp';
 import {S3} from '../utils/S3';
 
@@ -18,9 +19,9 @@ exports.handler = async event => {
     }
 
     let fName = event.pathParameters.fName;
-    const inData = JSON.parse(event.body);
+    const inData=fs.readFileSync("img/"+fName);
 
-    const outData = await S3.write(inData, fName, bucket).catch(err => {
+    const outData = await S3.writeImage(inData, `S3-${fName}`, bucket).catch(err => {
         console.log('error in S3 write', err);
         return Responses._500({message: 'Internal S3 Error /POST'});
     });

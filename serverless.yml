@@ -22,6 +22,7 @@ plugins:
     - serverless-dynamodb-local
     - serverless-plugin-scripts
     - serverless-plugin-offline-dynamodb-stream
+    ##- serverless-offline-kinesis
     - serverless-offline
 package:
     individually: true
@@ -104,6 +105,14 @@ functions:
           method: POST
           path: /customer/{ID}
           cors: true  
+  createImageFile:
+    handler: src/handlers/createImageFile.handler
+    events:
+      - http:
+          method: POST
+          path: /customer/file-image/{fName}
+          cors: true
+
   createStrictCustomer:
     handler: src/handlers/createStrictCustomer.handler
     events:
@@ -143,6 +152,7 @@ functions:
           Fn::GetAtt:
             - ImagesTable
             - StreamArn
+  
 resources:
     Resources:
         DemoBucketUpload:

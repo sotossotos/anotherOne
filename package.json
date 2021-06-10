@@ -19,11 +19,16 @@
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-http": "^2.7.0",
     "serverless-offline": "^7.0.0",
+    "serverless-offline-kinesis": "^4.2.0",
     "serverless-plugin-offline-dynamodb-stream": "^1.0.20"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
     "@shelf/jest-dynamodb": "^1.8.1",
+    "babel-jest": "^27.0.2",
     "jest": "^27.0.3",
+    "regenerator-runtime": "^0.13.7",
     "serverless-plugin-scripts": "^1.0.2",
     "serverless-s3-local": "^0.6.17",
     "serverless-webpack": "^5.5.0",

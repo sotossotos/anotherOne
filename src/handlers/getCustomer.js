@@ -21,7 +21,7 @@ exports.handler = async event => {
     try{
       customer =await Customer.get(ID);
     }catch(err){
-      console.log('error in dynamo write', err);
+      console.log('error in dynamo read', err);
       return  Responses._500({ message: 'Internal ERROR' });
     }
   

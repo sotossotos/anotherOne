@@ -81,7 +81,7 @@ content-type: application/json
 
 {
     "name": "sotiris",
-    "surname": "loizou",
+    "surname": "loizous",
     "birthYear":1900
 }
 
@@ -136,16 +136,21 @@ content-type: application/json
 
 {
     "name": "andreas",
-    "surname": "antoniou",
+    "surname": "antonios",
     "birthYear": "2000"
 }
+###
+DELETE {{host}}/dev/customer/22222
+
+###
+GET {{host}}/dev/customer/22222
 ###
 POST {{host}}/dev/strict-customer/2345234
 content-type: application/json
 
 {
     "name": "tofias",
-    "surname": "raxou",
+    "surname": "raxous",
     "birthYear": "2005"
 }
 ###
@@ -194,3 +199,6 @@ content-type: application/json
     "languages": ["English","Russian","German"],
     "birthYear": "2005"
 }
+
+###
+POST {{host}}/dev/file-image/aChar.js

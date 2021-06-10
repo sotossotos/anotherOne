@@ -62,11 +62,11 @@ export const S3 = {
      * @param {String} bucket 
      * @returns {*}
      */
-    async writeImage(imageBuffer, fileName, bucket) {
+    async writeImage(imageBuffer, fileNameForS3, bucket) {
       const params = {
           Bucket: bucket,
           Body: imageBuffer,
-          Key: fileName,
+          Key: fileNameForS3,
       };
 
       const newData = await s3Client.putObject(params).promise();
