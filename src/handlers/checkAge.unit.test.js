@@ -1,7 +1,8 @@
 import {handler} from '../handlers/checkAge'
 
 
-describe('Whole suit',()=>{
+describe('Testing checkAge Lambda',()=>{
+  // Handler invocation 
   async function  asyncEventHelper(age,name,surname){
     const event={
       pathParameters:{

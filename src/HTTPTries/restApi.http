@@ -86,7 +86,7 @@ content-type: application/json
 }
 
 ###
-GET {{host}}/dev/customer/22341
+GET {{host}}/dev/customer/12345
 
 ###
 GET {{host}}/dev/customer/2
@@ -100,7 +100,7 @@ content-type: application/json
 
 {
     "name": "sotiris",
-    "surname": "loizou",
+    "surname": "loizous",
     "birthYear": "1900"
 }
 ###
@@ -128,7 +128,7 @@ content-type: application/json
 {
     "name": "sotiris",
     "surname": "loizou",
-    "birthYear": "1900"
+    "birthYear": "2000"
 }
 ###
 POST {{host}}/dev/customer/22222
@@ -201,4 +201,4 @@ content-type: application/json
 }
 
 ###
-POST {{host}}/dev/file-image/aChar.js
+POST {{host}}/dev/customer/file-image/aChar.jpg
