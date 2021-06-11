@@ -14,20 +14,26 @@ exports.handler = async event => {
         return Responses._400({ message: 'missing the ID from the url path' });
     }
     const ID = event.pathParameters.ID;
-    let customer;
-    try{
-      customer =await Customer.get(ID);
-    }catch(err){
-      console.log('error in dynamo read', err);
-      return  Responses._500({ message: 'Internal ERROR' });
-    }
+    let customer= await getCustomer(ID);
+    let res;
     if(!customer)return Responses._400({message:`The customer with iD-> ${ID} doesn't exist`})
+    if(customer.statusCode) return customer;
     try{
        res=await Customer.destroy(ID);
     }catch(err){
       console.log('error in dynamo deletion', err);
       return  Responses._500({ message: 'Internal ERROR' });
     }
-    console.log(res);
     return Responses._200({message: `Successful deletion of customer with ID -> ${ID}`} );
 };
+
+export let getCustomer=async id=>{
+  let customerRes;
+  try{
+    customerRes =await Customer.get(id);
+  }catch(err){
+    console.log('error in dynamo read', err);
+    return  Responses._500({ message: 'Internal ERROR' });
+  }
+  return customerRes;
+}

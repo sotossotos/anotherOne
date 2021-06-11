@@ -4,7 +4,11 @@ import Responses from '../utils/API_Responses' ;
 import {S3} from '../utils/S3' ;
 
 const bucket = process.env.bucketName;
-
+/**
+ * 
+ * @param {*} event 
+ * @returns 
+ */
 exports.handler = async event => {
     console.log('event', event);
     console.log(`this is the bucket param: ${bucket}`);

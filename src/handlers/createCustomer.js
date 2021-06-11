@@ -47,6 +47,11 @@ exports.handler = async event => {
 };
 
 //export function inputCheck(event){
+  /**
+   * 
+   * @param {*} event 
+   * @returns {Responses||JSON}
+   */
   export let inputCheck=event=>{
   if (!event.pathParameters || !event.pathParameters.ID) {
     return Responses._400({ message: 'missing the ID from the url path' });

@@ -26,7 +26,7 @@ exports.handler = async event => {
     }
   
     if (!customer) {
-        return Responses._404({ message: 'Failed to get customer with specified ID' });
+        return Responses._404({ message: 'Failed 123 to get customer with specified ID' });
     }
 
     return Responses._200(customer.attrs );

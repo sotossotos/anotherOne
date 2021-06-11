@@ -347,6 +347,7 @@ node_modules/
 .dynamodb/
 .webpack/
 .serverless/
+s3-local/
 
 # Typescript v1 declaration files
 typings/

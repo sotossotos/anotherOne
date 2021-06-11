@@ -128,7 +128,7 @@ content-type: application/json
 {
     "name": "sotiris",
     "surname": "loizou",
-    "birthYear": "2000"
+    "birthYear": "1000"
 }
 ###
 POST {{host}}/dev/customer/22222

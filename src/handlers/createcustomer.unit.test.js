@@ -4,8 +4,6 @@ import {customerSchema} from '../../tables/customer-schema'
 
 describe('Testing create customer Lambda',()=>{
   // Handler invocation 
-  let fakeHandler=jest.fn();
-  fakeHandler.mockReturnValueOnce();
   function  eventProducer(ID,name=undefined,surname=undefined,birthYear=undefined){
     let event={
       pathParameters:{
