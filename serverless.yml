@@ -22,6 +22,7 @@ plugins:
     - serverless-dynamodb-local
     - serverless-plugin-scripts
     - serverless-plugin-offline-dynamodb-stream
+    - serverless-offline-sns
     ##- serverless-offline-kinesis
     - serverless-offline
 package:
@@ -31,6 +32,9 @@ custom:
     serverless-offline: 
       allowCache: true
       ##useChildProcesses: true
+    serverless-offline-sns:
+    port: 4002 
+    debug: false
     tableName: customer-table
     bucketName: local-bucket-upload
     dynamodbStream:

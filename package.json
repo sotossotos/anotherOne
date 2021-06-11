@@ -20,7 +20,9 @@
     "serverless-http": "^2.7.0",
     "serverless-offline": "^7.0.0",
     "serverless-offline-kinesis": "^4.2.0",
-    "serverless-plugin-offline-dynamodb-stream": "^1.0.20"
+    "serverless-offline-sns": "^0.68.0",
+    "serverless-plugin-offline-dynamodb-stream": "^1.0.20",
+    "serverless-plugin-offline-kinesis-stream": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",

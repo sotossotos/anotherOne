@@ -16,6 +16,8 @@
  - npm install --save-dev serverless-plugin-scripts
  - npm install serverless-s3-local --save-dev
  - npm install --save serverless-plugin-offline-dynamodb-stream
+ - npm install --save serverless-plugin-offline-kinesis-stream
+ - npm install serverless-offline-sns --save
 
 ## Execution/Run
  - Command "sls offline (start)" start can be omitted.
