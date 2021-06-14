@@ -18,7 +18,7 @@ describe('Testing customer deletion end-point',()=>{
     }
   })
   
-  test ('Testing deletion of existing customer',()=>{
+  test ('Testing deletion of non-existing customer',()=>{
     let nonExistingID=35425234534;
     expect.assertions(1)
     if(deleter.getCustomer(nonExistingID)){

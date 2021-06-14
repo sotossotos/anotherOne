@@ -10,8 +10,6 @@ const bucket = process.env.bucketName;
  * @returns 
  */
 exports.handler = async event => {
-    console.log('event', event);
-    console.log(`this is the bucket param: ${bucket}`);
     if (!event.pathParameters || !event.pathParameters.fName) {
         // failed without an fileName
         return Responses._400({ message: 'missing the fileName from the path' });
