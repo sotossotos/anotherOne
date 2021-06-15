@@ -45,7 +45,7 @@ custom:
     tableName: customer-table
     bucketName: local-bucket-upload
     serverless-offline-sqs:
-      # authCreate: true
+      autoCreate: true
       apiVersion: '2012-11-05'
       endpoint: http://0.0.0.0:9324
       region: eu-west-2
