@@ -12,29 +12,30 @@ import AWS from 'aws-sdk';
  * @returns {JSON}
  */
 exports.handler = async (event) => {
-    let age = String(event.pathParameters.AGE);
-    const user = JSON.parse(event.body);
-    if (!user.name || !user.surname){
-        return Responses._400({ message: 'Something wrong with JSON BODY' });
-    }
-    if(isNaN(age)){
-        return Responses._400({ message: 'Age parameter expected in url' });
-    }
-    let check="-limit"
-    if (age<18){
-        check="under"+check
-    }else{
-        check="over"+check
-    }
-    return {
-      statusCode: 200,
-      body: JSON.stringify(
-        {
-          message: 'Based on the age provided '+user.name +' '+user.surname+' you are '+check,
-          input: event,
-        },
-        null,
-        2
-      ),
-    }
+  const age = String(event.pathParameters.AGE);
+  const user = JSON.parse(event.body);
+  let check = "-limit";
+  if (!user.name || !user.surname) {
+    return Responses._400({ message: 'Something wrong with JSON BODY' });
   }
+  if (isNaN(age)) {
+    return Responses._400({ message: 'Age parameter expected in url' });
+  }
+  
+  if (age < 18) {
+    check = "under" + check
+  } else {
+    check = "over" + check
+  }
+  return {
+    statusCode: 200,
+    body: JSON.stringify(
+      {
+        message: 'Based on the age provided ' + user.name + ' ' + user.surname + ' you are ' + check,
+        input: event,
+      },
+      null,
+      2
+    ),
+  }
+}

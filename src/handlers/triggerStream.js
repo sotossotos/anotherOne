@@ -1,36 +1,46 @@
 
 
 import Responses from '../utils/API_Responses.js';
-import AWS from 'aws-sdk' ;
+import AWS from 'aws-sdk';
 /**
  * 
  * @param {import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
  * @returns {JSON}
  */
- let topic = process.env.customerCreatedSNS;
+let topic = process.env.customerCreatedSNS;
 exports.handler = async (event) => {
-    
-    // console.log(event);
-    console.log(event.Records[0].eventName);
-    let sns= new AWS.SNS(
-      {
-      endpoint:"http://127.0.0.1:4002",
-      region: "eu-west-1"
+
+  // console.log(event);
+  //console.log(event.Records[0]);
+  let sns = new AWS.SNS(
+    {
+      endpoint: "http://127.0.0.1:4002",
+      region: "eu-west-2"
     }
-    );
-    let resPub;
-    topic="arn:aws:sns:eu-west-1:123456789012:"+topic;
-    try{
-      resPub=await sns.publish({
-        
-        Message: "New Customer Created,you must send Welcome Email",
+  );
+  let resPub;
+  topic = "arn:aws:sns:eu-west-2:123456789012:" + topic;
+  if (event.Records[0].eventName === "INSERT") {
+    let itemCustomer = JSON.stringify(event.Records[0].dynamodb.NewImage)
+
+    let objTest = {
+      default: itemCustomer,
+    }
+    objTest = JSON.stringify(objTest);
+    try {
+      resPub = await sns.publish({
+
+        Message: objTest,
+        MessageStructure: 'json',
         TopicArn: topic
-        
+
       }).promise();
 
-    }catch(err){
+    } catch (err) {
       console.log(`ERROR OCCURED -> ${err}`)
     }
     console.log(resPub)
-    
   }
+
+
+}

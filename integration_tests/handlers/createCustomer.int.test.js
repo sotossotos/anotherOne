@@ -33,6 +33,7 @@ describe('Create customer integration test',()=>{
             body:{
                 name:'solo',
                 surname:'man',
+                email:'some@one.com',
                 birthYear:1900
             },
             pathParametersObject:{
@@ -46,6 +47,7 @@ describe('Create customer integration test',()=>{
             newCustomer:{
                 name:'solo',
                 surname:'man',
+                email:'some@one.com',
                 birthYear:1900,
                 ID:'fasd234'
             }
