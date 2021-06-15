@@ -27,7 +27,7 @@ plugins:
     - serverless-plugin-scripts
     - serverless-plugin-offline-dynamodb-stream
     - serverless-offline-sns
-    # - serverless-offline-sqs
+    - serverless-offline-sqs
     # - serverless-offline-kinesis
     - serverless-offline-sqs
     - serverless-offline

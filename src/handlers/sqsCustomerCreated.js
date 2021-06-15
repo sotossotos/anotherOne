@@ -1,5 +1,5 @@
 
 exports.handler = async (event) => {
-  console.log("SQS Message has be stored !")
+  console.log("SQS Message has been stored !")
 
 }

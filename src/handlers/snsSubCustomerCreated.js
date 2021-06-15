@@ -11,10 +11,10 @@ exports.handler = async (event, context) => {
 
   //lambda trigger for email of account creation
   //code for the sqs to store
-  const paramC={
-    QueueName:'InitialQueue'
-  }
-  sqs.createQueue(paramC)
+  // const paramC={
+  //   QueueName:'InitialQueue'
+  // }
+  // sqs.createQueue(paramC)
   const params = {
     Message: event.Records[0].Message,
     
