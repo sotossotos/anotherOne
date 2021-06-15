@@ -9,13 +9,13 @@ const tableName = process.env.tableName;
  * @returns {import('../utils/API_Responses')}
  */
 exports.handler = async event => {
-
+  let res;
   if (!event.pathParameters || !event.pathParameters.ID) {
     return Responses._400({ message: 'missing the ID from the url path' });
   }
   const ID = event.pathParameters.ID;
   let customer = await getCustomer(ID);
-  let res;
+  
   if (!customer) return Responses._400({ message: `The customer with iD-> ${ID} doesn't exist` })
   if (customer.statusCode) return customer;
   try {
@@ -27,7 +27,7 @@ exports.handler = async event => {
   return Responses._200({ message: `Successful deletion of customer with ID -> ${ID}` });
 };
 
-export let getCustomer = async id => {
+export const getCustomer = async id => {
   let customerRes;
   try {
     customerRes = await Customer.get(id);

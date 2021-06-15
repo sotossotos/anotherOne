@@ -1,5 +1,4 @@
 import * as deleter from '../handlers/deleteCustomer'
-// import {Responses} from '../utils/API_Responses'
 const Responses = require('../utils/API_Responses');
 
 deleter.getCustomer=jest.fn()

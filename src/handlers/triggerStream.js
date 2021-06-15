@@ -14,12 +14,12 @@ exports.handler = async (event) => {
   //console.log(event.Records[0]);
   let sns = new AWS.SNS(
     {
-      endpoint: "http://127.0.0.1:4002",
-      region: "eu-west-2"
+      endpoint: "http://localhost:4002",
+      region: "localhost"
     }
   );
   let resPub;
-  topic = "arn:aws:sns:eu-west-2:123456789012:" + topic;
+  topic = "arn:aws:sns:localhost:123456789012:" + topic;
   if (event.Records[0].eventName === "INSERT") {
     let itemCustomer = JSON.stringify(event.Records[0].dynamodb.NewImage)
 

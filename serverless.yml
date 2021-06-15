@@ -6,7 +6,7 @@ provider:
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
   profile: serverlessUser
-  region: eu-west-2
+  region: localhost
   environment:
         tableName: ${self:custom.tableName}
         bucketName: ${self:custom.bucketName}
@@ -28,8 +28,6 @@ plugins:
     - serverless-plugin-offline-dynamodb-stream
     - serverless-offline-sns
     - serverless-offline-sqs
-    # - serverless-offline-kinesis
-    - serverless-offline-sqs
     - serverless-offline
     
 package:
@@ -40,7 +38,7 @@ custom:
       allowCache: true
       ##useChildProcesses: true
     serverless-offline-sns:
-      port: 4002 
+      localPort: 4002 
       debug: true
     tableName: customer-table
     bucketName: local-bucket-upload
@@ -48,21 +46,21 @@ custom:
       autoCreate: true
       apiVersion: '2012-11-05'
       endpoint: http://0.0.0.0:9324
-      region: eu-west-2
+      region: ${self:provider.region}
       accessKeyId: root
       secretAccessKey: root
       skipCacheInvalidation: false
     dynamodbStream:
       host: localhost
       port: 8000
-      region: eu-west-2
+      region: ${self:provider.region}
       pollForever: true
       streams:
         - table: ${self:custom.tableName}
           functions:
             - triggerStream
     serverless-offline-dynamodb-streams:
-      region: eu-west-2
+      region: ${self:provider.region}
       accessKeyId: root
       secretAccessKey: root
       skipCacheInvalidation: false
@@ -178,10 +176,19 @@ functions:
   sqsCustomerCreated:
     handler: src/handlers/sqsCustomerCreated.handler
     events:
-      - sqs: arn:aws:sqs:eu-west-2:123:InitialQueue
+      - sqs: 
+          arn:
+            Fn::GetAtt:
+              - InitialQueue
+              - Arn
+        batchSize: 1
   
 resources:
     Resources:
+        InitialQueue:
+          Type: "AWS::SQS::Queue"
+          Properties:
+            QueueName: "InitialQueue"
         DemoBucketUpload:
           Type: AWS::S3::Bucket
           Properties:

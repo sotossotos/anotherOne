@@ -1,7 +1,7 @@
 
 import AWS from 'aws-sdk'
-const sqs = new AWS.SQS({ region: 'eu-west-2' })
-const queueURL = 'http://localhost:9324/root/InitialQueue'
+const sqs = new AWS.SQS({ endpoint:'0.0.0.0:9324' })
+const queueURL = 'http://0.0.0.0:9324/queue/InitialQueue'
 exports.handler = async (event, context) => {
   let customerDetails = JSON.parse(event.Records[0].Sns.Message);
 
@@ -16,11 +16,16 @@ exports.handler = async (event, context) => {
   // }
   // sqs.createQueue(paramC)
   const params = {
-    Message: event.Records[0].Message,
-    
-    QueueURL: queueURL
+    MessageBody: 'This is a message body',
+    QueueUrl: queueURL
   }
-  sqs.sendMessage(params)
+  sqs.sendMessage(params, function(err,data){
+    if (err){
+      console.log('error:','Fail Send Message'+err)
+    }else{
+      console.log("It worked"+ data)
+    }
+  })
 
 
 

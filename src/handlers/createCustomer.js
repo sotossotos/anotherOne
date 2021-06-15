@@ -1,11 +1,6 @@
-// const Responses = require('../utils/API_Responses');
-// const Dynamo = require('../utils/Dynamo');
-// const customerTable = require('../../tables/customer');
-// const customerSchema= require('../../tables/customer-schema');
 import Responses from '../utils/API_Responses';
 import { Customer } from '../../tables/customer';
 import { customerSchema } from '../../tables/customer-schema';
-//const tableName="customer-table";
 const tableName = process.env.tableName;
 
 /**
@@ -16,17 +11,6 @@ const tableName = process.env.tableName;
  * @returns {import('../utils/API_Responses')} 
  */
 exports.handler = async event => {
-  // if (!event.pathParameters || !event.pathParameters.ID) {
-  //     return Responses._400({ message: 'missing the ID from the url path' });
-  // }
-  // let ID = event.pathParameters.ID ;
-  // const customer = JSON.parse(event.body);
-  // customer.ID = ID;
-  // const res=customerSchema.validate(customer);
-  // if(typeof(res.error)!== 'undefined'){
-  //     const errorMsg=res.error.message.replace(/"/g,'');
-  //     return Responses._400({ message: 'ERROR: '+errorMsg });
-  // }
   let newCustomer = inputCheck(event);
   if (newCustomer.statusCode) {
     return newCustomer;
@@ -52,11 +36,11 @@ exports.handler = async event => {
  * @param {*} event 
  * @returns {Responses||JSON}
  */
-export let inputCheck = event => {
+export const inputCheck = event => {
   if (!event.pathParameters || !event.pathParameters.ID) {
     return Responses._400({ message: 'missing the ID from the url path' });
   }
-  let ID = event.pathParameters.ID;
+  const ID = event.pathParameters.ID;
   const customer = JSON.parse(event.body);
   customer.ID = ID;
   const res = customerSchema.validate(customer);

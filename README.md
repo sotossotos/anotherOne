@@ -19,6 +19,7 @@
  - npm install --save serverless-plugin-offline-kinesis-stream
  - npm install serverless-offline-sns --save
  - npm install serverless-offline-sqs
+ - npm install --save-dev serverless-offline-ses
 
 ## Execution/Run
  - Command "sls offline (start)" start can be omitted.

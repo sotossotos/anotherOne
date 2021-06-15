@@ -1,8 +1,5 @@
 'use strict'
-// const Responses = require('../utils/API_Responses');
-// const AWS = require("aws-sdk");
 import Responses from '../utils/API_Responses';
-import AWS from 'aws-sdk';
 /**
  * 
  * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 

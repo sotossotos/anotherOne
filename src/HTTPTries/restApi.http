@@ -119,6 +119,7 @@ content-type: application/json
 {
     "name": "tofias",
     "surname": "raxou",
+    "email":"gey@hoo.com",
     "birthYear": "2005"
 }
 ###

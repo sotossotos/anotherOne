@@ -1,6 +1,3 @@
-// const Responses = require('../utils/API_Responses');
-// const Dynamo = require('../utils/Dynamo');
-// const customerSchema= require('../../tables/customer-schema');
 import Responses from '../utils/API_Responses';
 import { Dynamo } from '../utils/Dynamo';
 import { customerSchema } from '../../tables/customer-schema';

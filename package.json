@@ -31,6 +31,7 @@
     "babel-jest": "^27.0.2",
     "jest": "^27.0.3",
     "regenerator-runtime": "^0.13.7",
+    "serverless-offline-ses": "0.0.7",
     "serverless-offline-sqs": "^4.1.1",
     "serverless-plugin-scripts": "^1.0.2",
     "serverless-s3-local": "^0.6.17",
