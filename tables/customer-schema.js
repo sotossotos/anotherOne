@@ -2,7 +2,7 @@
 // const joi =require('joi');
 import joi from 'joi';
 
-export let customerSchema = joi.object().keys({
+export const customerSchema = joi.object().keys({
   ID: joi.string().alphanum().min(5).required(),
   name: joi.string().required(),
   surname: joi.string(),

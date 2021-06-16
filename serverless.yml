@@ -28,6 +28,7 @@ plugins:
     - serverless-plugin-offline-dynamodb-stream
     - serverless-offline-sns
     - serverless-offline-sqs
+    - serverless-offline-ses
     - serverless-offline
     
 package:
@@ -42,10 +43,16 @@ custom:
       debug: true
     tableName: customer-table
     bucketName: local-bucket-upload
+    ses:
+      stages:
+        - dev
+      port: 9001
+      outputDir: "./outpout"
+      clean: true
     serverless-offline-sqs:
       autoCreate: true
       apiVersion: '2012-11-05'
-      endpoint: http://0.0.0.0:9324
+      endpoint: http://localhost:9324 ## or use localhost->0.0.0.0
       region: ${self:provider.region}
       accessKeyId: root
       secretAccessKey: root
@@ -179,25 +186,20 @@ functions:
       - sqs: 
           arn:
             Fn::GetAtt:
-              - InitialQueue
+              - EmailQueue
               - Arn
         batchSize: 1
   
 resources:
     Resources:
-        InitialQueue:
+        EmailQueue:
           Type: "AWS::SQS::Queue"
           Properties:
-            QueueName: "InitialQueue"
+            QueueName: "EmailQueue"
         DemoBucketUpload:
           Type: AWS::S3::Bucket
           Properties:
             BucketName: ${self:custom.bucketName}
-        # customerCreatedTopic:
-        #   Type: AWS::SNS:Topic
-        #   Properties:
-        #     DisplayName: customerCreatedT
-        #     TopicName: customerCreatedT
         MyDynamoDbTable:
             Type: AWS::DynamoDB::Table
             Properties:

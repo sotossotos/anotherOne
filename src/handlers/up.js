@@ -1,8 +1,7 @@
-//'use strict'
+
 // First try of creating lambda
 
 import Responses from '../utils/API_Responses.js';
-import AWS from 'aws-sdk';
 /**
  * 
  * @param {import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 

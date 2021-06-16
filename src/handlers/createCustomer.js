@@ -30,7 +30,6 @@ exports.handler = async event => {
   return Responses._200({ newCustomer });
 };
 
-//export function inputCheck(event){
 /**
  * 
  * @param {*} event 

@@ -21,7 +21,7 @@ exports.handler = async (event) => {
   let resPub;
   topic = "arn:aws:sns:localhost:123456789012:" + topic;
   if (event.Records[0].eventName === "INSERT") {
-    let itemCustomer = JSON.stringify(event.Records[0].dynamodb.NewImage)
+    const itemCustomer = JSON.stringify(event.Records[0].dynamodb.NewImage)
 
     let objTest = {
       default: itemCustomer,
