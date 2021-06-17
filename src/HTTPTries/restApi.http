@@ -2,16 +2,16 @@
 @awshost=https://x2kzg20gw3.execute-api.eu-west-2.amazonaws.com
 
 
-GET {{host}}/dev/live
+GET {{host}}/local/live
 
 
 ###
 
-GET {{host}}/dev/greet/sotiris
+GET {{host}}/local/greet/sotiris
 
 ###
 
-POST {{host}}/dev/age-restriction/18
+POST {{host}}/local/age-restriction/18
 content-type: application/json
 
 {
@@ -19,7 +19,7 @@ content-type: application/json
     "surname": "loizou"
 }
 ###
-POST {{awshost}}/dev/age-restriction/12
+POST {{awshost}}/local/age-restriction/12
 content-type: application/json
 
 {
@@ -28,7 +28,7 @@ content-type: application/json
 }
 ###
 
-POST {{host}}/dev/age-restriction/17
+POST {{host}}/local/age-restriction/17
 content-type: application/json
 
 {
@@ -37,7 +37,7 @@ content-type: application/json
 } 
 ###
 
-POST {{host}}/dev/age-restriction/20
+POST {{host}}/local/age-restriction/20
 content-type: application/json
 
 {
@@ -48,7 +48,7 @@ content-type: application/json
 
 ###
 
-POST {{host}}/dev/age-restriction/17
+POST {{host}}/local/age-restriction/17
 content-type: application/json
 
 {
@@ -57,7 +57,7 @@ content-type: application/json
 }
 ###
 
-POST {{host}}/dev/age-restriction/17
+POST {{host}}/local/age-restriction/17
 content-type: application/json
 
 {
@@ -67,7 +67,7 @@ content-type: application/json
 
 ###
 
-POST {{host}}/dev/age-restriction/17
+POST {{host}}/local/age-restriction/17
 content-type: application/json
 
 {
@@ -76,7 +76,7 @@ content-type: application/json
 }
 
 ###
-POST {{host}}/dev/customer/12345
+POST {{host}}/local/customer/12345
 content-type: application/json
 
 {
@@ -86,16 +86,16 @@ content-type: application/json
 }
 
 ###
-GET {{host}}/dev/customer/12345
+GET {{host}}/local/customer/12345
 
 ###
-GET {{host}}/dev/customer/2
+GET {{host}}/local/customer/2
 
 ###
-GET {{host}}/dev/customer/afsd
+GET {{host}}/local/customer/afsd
 
 ###
-POST {{host}}/dev/strict-customer/11111
+POST {{host}}/local/strict-customer/11111
 content-type: application/json
 
 {
@@ -104,7 +104,7 @@ content-type: application/json
     "birthYear": "1900"
 }
 ###
-POST {{host}}/dev/strict-customer/22222
+POST {{host}}/local/strict-customer/22222
 content-type: application/json
 
 {
@@ -113,7 +113,7 @@ content-type: application/json
     "birthYear": "2000"
 }
 ###
-POST {{host}}/dev/strict-customer/33333
+POST {{host}}/local/strict-customer/33333
 content-type: application/json
 
 {
@@ -123,7 +123,7 @@ content-type: application/json
     "birthYear": "2005"
 }
 ###
-POST {{host}}/dev/customer/11111
+POST {{host}}/local/customer/11111
 content-type: application/json
 
 {
@@ -132,7 +132,7 @@ content-type: application/json
     "birthYear": "1000"
 }
 ###
-POST {{host}}/dev/customer/22222
+POST {{host}}/local/customer/22222
 content-type: application/json
 
 {
@@ -142,12 +142,12 @@ content-type: application/json
     "birthYear": "2000"
 }
 ###
-DELETE {{host}}/dev/customer/22222
+DELETE {{host}}/local/customer/22222
 
 ###
-GET {{host}}/dev/customer/22222
+GET {{host}}/local/customer/22222
 ###
-POST {{host}}/dev/strict-customer/2345234
+POST {{host}}/local/strict-customer/2345234
 content-type: application/json
 
 {
@@ -157,7 +157,7 @@ content-type: application/json
 }
 ###
 
-POST {{host}}/dev/customer/12
+POST {{host}}/local/customer/12
 content-type: application/json
 
 {
@@ -166,10 +166,10 @@ content-type: application/json
     "birthYear": "2005"
 }
 ###
-GET {{host}}/dev/customer/22222
+GET {{host}}/local/customer/22222
 
 ###
-POST https://x2kzg20gw3.execute-api.eu-west-2.amazonaws.com/dev/strict-customer/12345
+POST https://x2kzg20gw3.execute-api.eu-west-2.amazonaws.com/local/strict-customer/12345
 content-type: application/json
 
 {
@@ -178,20 +178,20 @@ content-type: application/json
     "birthYear": "2000"
 }
 ###
-GET {{host}}/dev/customer/22222
+GET {{host}}/local/customer/22222
 
 ###
-GET {{host}}/dev/get-strict-customer/2
+GET {{host}}/local/get-strict-customer/2
 
 ###
-GET {{host}}/dev/get-strict-customer/fasd
+GET {{host}}/local/get-strict-customer/fasd
 
 
 ###
-GET {{host}}/dev/file/fileMark.json
+GET {{host}}/local/file/fileMark.json
 
 ###
-POST {{host}}/dev/file/fileMark.json
+POST {{host}}/local/file/fileMark.json
 content-type: application/json
 
 {
@@ -203,4 +203,4 @@ content-type: application/json
 }
 
 ###
-POST {{host}}/dev/customer/file-image/aChar.jpg
+POST {{host}}/local/customer/file-image/aChar.jpg
