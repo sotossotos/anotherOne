@@ -33,7 +33,7 @@ exports.handler = async event => {
 /**
  * 
  * @param {*} event 
- * @returns {Responses||JSON}
+ * @returns {Responses}
  */
 export const inputCheck = event => {
   if (!event.pathParameters || !event.pathParameters.ID) {

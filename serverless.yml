@@ -67,6 +67,7 @@ custom:
         - table: ${self:custom.tableName}
           functions:
             - triggerStream
+            - triggerPostgresCreation
     serverless-offline-dynamodb-streams:
       region: ${self:provider.region}
       accessKeyId: root
@@ -171,6 +172,17 @@ functions:
           cors: true  
   triggerStream:
     handler: src/handlers/triggerStream.handler
+    events:
+      - stream:
+        type: dynamodb
+        batchSize: 1
+        startingPosition: LATEST
+        arn:
+          Fn::GetAtt:
+            - ImagesTable
+            - StreamArn
+  triggerPostgresCreation:
+    handler: src/handlers/triggerPostgresCreation.handler
     events:
       - stream:
         type: dynamodb

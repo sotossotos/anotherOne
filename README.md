@@ -20,6 +20,9 @@
  - npm install serverless-offline-sns --save
  - npm install serverless-offline-sqs
  - npm install --save-dev serverless-offline-ses
+ - npm install --save sequelize
+ - npm install --save noop2
+ - npm install --save pg pg-hstore
 
 ## Execution/Run
  - Command "sls offline (start)" start can be omitted.

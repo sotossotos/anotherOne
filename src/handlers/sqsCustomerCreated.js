@@ -29,10 +29,10 @@ exports.handler = async (event) => {
     },
     Source: 'YourProvider@electricity.co.uk',
   };
-    try{
-      await ses.sendEmail(params).promise();
-    }catch(error){
-      console.log('error sending the email',error)
-    }
+    // try{
+    //   await ses.sendEmail(params).promise();
+    // }catch(error){
+    //   console.log('error sending the email',error)
+    // }
 
 }

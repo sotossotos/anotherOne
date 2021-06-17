@@ -4,7 +4,7 @@ import { customerSchema } from '../../tables/customer-schema';
 const tableName = process.env.tableName;
 /**
  * 
- * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
+ * @param { * } event 
  * @returns {import('../utils/API_Responses')}
  */
 exports.handler = async event => {
