@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "lint": "esling srs --ext .js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "express": "^4.17.1",
     "jimp": "^0.16.1",
     "joi": "^17.4.0",
+    "sequelize": "^6.6.2",
     "serverless": "^2.43.1",
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-http": "^2.7.0",
@@ -30,6 +32,9 @@
     "@shelf/jest-dynamodb": "^1.8.1",
     "babel-jest": "^27.0.2",
     "jest": "^27.0.3",
+    "noop2": "^2.0.0",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.4",
     "regenerator-runtime": "^0.13.7",
     "serverless-offline-ses": "0.0.7",
     "serverless-offline-sqs": "^4.1.1",
