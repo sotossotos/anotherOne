@@ -1,12 +1,13 @@
 import Responses from '../utils/API_Responses';
 import { Customer } from '../../tables/customer';
+import { APIGatewayProxyEvent } from 'aws-lambda';
 
 const tableName = process.env.tableName;
 
 /**
  * 
- * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
- * @returns {import('../utils/API_Responses')}
+ * @param { APIGatewayProxyEvent } event 
+ * @returns {}
  */
 exports.handler = async event => {
   let res;
@@ -15,7 +16,7 @@ exports.handler = async event => {
   }
   const ID = event.pathParameters.ID;
   let customer = await getCustomer(ID);
-  
+
   if (!customer) return Responses._400({ message: `The customer with iD-> ${ID} doesn't exist` })
   if (customer.statusCode) return customer;
   try {

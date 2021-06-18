@@ -1,15 +1,13 @@
 'use strict'
-// const Responses = require('../utils/API_Responses');
-// const AWS = require("aws-sdk");
 import Responses from '../utils/API_Responses';
-import types from 'aws-lambda';
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import AWS from 'aws-sdk';
 /**
  * This API gateway checks age limit for over/under certain age(18)
  * 
  * 
- * @param { types.APIGatewayProxyEvent} event 
- * @returns {JSON}
+ * @param { APIGatewayProxyEvent} event 
+ * @returns { * }
  */
 exports.handler = async (event) => {
   const age = String(event.pathParameters.AGE);
@@ -18,11 +16,11 @@ exports.handler = async (event) => {
   if (!user.name || !user.surname) {
     return Responses._400({ message: 'Something wrong with JSON BODY' });
   }
-  if (isNaN(age)) {
+  if (isNaN(parseInt(age))) {
     return Responses._400({ message: 'Age parameter expected in url' });
   }
-  
-  if (age < 18) {
+
+  if (parseInt(age) < 18) {
     check = "under" + check
   } else {
     check = "over" + check

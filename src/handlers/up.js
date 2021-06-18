@@ -8,10 +8,10 @@ import Responses from '../utils/API_Responses.js';
  * @param {import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
  * @returns {JSON}
  */
-const sequelize = new Sequelize('customers','user','password',{
-  host:'localhost',
-  dialect:'postgres',
-  dialectModule:pg,
+const sequelize = new Sequelize('customers', 'user', 'password', {
+  host: 'localhost',
+  dialect: 'postgres',
+  dialectModule: pg,
 })
 exports.handler = async (event) => {
 

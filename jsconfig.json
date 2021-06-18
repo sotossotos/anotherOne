@@ -4,4 +4,4 @@
   },
   "exclude": ["node_modules", "**/node_modules/*"]
 }
-//  "// @ts-check" <- Can write on top of js file to lint for that file only
+

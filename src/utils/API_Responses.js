@@ -2,8 +2,8 @@ let Responses = {
   /**
    * 
    * @param {Number} statusCode 
-   * @param {JSON} data 
-   * @returns {JSON}
+   * @param {Object} data 
+   * @returns {Object}
    */
   _DefineResponse(statusCode = 502, data = {}) {
     return {
@@ -18,7 +18,7 @@ let Responses = {
   },
   /**
    * 
-   * @param {JSON} data 
+   * @param {Object} data 
    * @returns {JSON} 
    */
   _200(data = {}) {
@@ -26,7 +26,7 @@ let Responses = {
   },
   /**
    * 
-   * @param {JSON} data 
+   * @param {Object} data 
    * @returns {JSON} 
    */
   _400(data = {}) {
@@ -34,7 +34,7 @@ let Responses = {
   },
   /**
    * 
-   * @param {JSON} data 
+   * @param {Object} data 
    * @returns {JSON} 
    */
   _404(data = {}) {
@@ -42,7 +42,7 @@ let Responses = {
   },
   /**
    * 
-   * @param {JSON} data 
+   * @param {Object} data 
    * @returns {JSON}
    */
   _500(data = {}) {
