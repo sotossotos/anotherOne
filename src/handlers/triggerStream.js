@@ -1,6 +1,4 @@
 
-
-import Responses from '../utils/API_Responses.js';
 import AWS from 'aws-sdk';
 /**
  * 
@@ -12,12 +10,12 @@ exports.handler = async (event) => {
 
   let sns = new AWS.SNS(
     {
-      endpoint: "http://localhost:4002",
+      endpoint: `http://${process.env.host}:${process.env.snsPort}`,
       region: "localhost"
     }
   );
   let resPub;
-  topic = "arn:aws:sns:localhost:123456789012:" + topic;
+  topic = `arn:aws:sns:${process.env.host}:123456789012:${topic}`;
   if (event.Records[0].eventName === "INSERT") {
     const itemCustomer = JSON.stringify(event.Records[0].dynamodb.NewImage)
 

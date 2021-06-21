@@ -1,26 +1,27 @@
 import * as checker from '../handlers/createCustomer'
 import { Responses } from '../utils/API_Responses'
 import { customerSchema } from '../../tables/customer-schema'
+import { object } from 'joi';
 
 describe('Testing create customer Lambda', () => {
   // Handler invocation 
   function eventProducer(ID, name = undefined, surname = undefined, email = undefined, birthYear = undefined) {
-    let event = {
+    const event = {
       pathParameters: {
         ID: `${ID}`
       },
-      body: ``
+      body: ''
     }
-    event.body += "{";
-    if (name) { event.body += `"name":"${name}"`; }
-    if (name && surname) { event.body += `,`; }
-    if (surname) { event.body += `"surname":"${surname}"`; }
+    event.body += "{"
+    if (name) { event.body += `"name":"${name}"` }
+    if (name && surname) { event.body += `,` }
+    if (surname) { event.body += `"surname":"${surname}"` }
     if ((surname || name) && email) { event.body += `,` }
     if (email) { event.body += `"email":"${email}"` }
     if (email && birthYear) { event.body += `,` }
     if (birthYear) { event.body += `"birthYear":${birthYear} ` }
     event.body += "}"
-    return event;
+    return event
   }
   let data;
   test('Test with simple correct valid data', () => {

@@ -19,7 +19,7 @@ content-type: application/json
     "surname": "loizou"
 }
 ###
-POST {{awshost}}/local/age-restriction/12
+POST {{host}}/local/age-restriction/12
 content-type: application/json
 
 {
@@ -113,14 +113,14 @@ content-type: application/json
     "birthYear": "2000"
 }
 ###
-POST {{host}}/local/strict-customer/33333
+POST {{host}}/local/customer/33333
 content-type: application/json
 
 {
-    "name": "tofias",
-    "surname": "raxou",
-    "email":"gey@hoo.com",
-    "birthYear": "2005"
+    "name": "john",
+    "surname": "white",
+    "email":"johnwhite@ola.com",
+    "birthYear": 2002
 }
 ###
 POST {{host}}/local/customer/11111
@@ -132,14 +132,14 @@ content-type: application/json
     "birthYear": "1000"
 }
 ###
-POST {{host}}/local/customer/22222
+POST {{host}}/local/customer/632541
 content-type: application/json
 
 {
-    "name": "andreas",
-    "surname": "antonios",
-    "email":"some@yahoo.com",
-    "birthYear": "2000"
+    "name": "omer",
+    "surname": "job",
+    "email":"omerjob@yahoo.com",
+    "birthYear": "2002"
 }
 ###
 DELETE {{host}}/local/customer/22222

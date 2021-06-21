@@ -1,6 +1,6 @@
 
 import AWS from 'aws-sdk'
-const ses = new AWS.SES({ region: 'eu-west-2', endpoint: 'http://localhost:9001' })
+// const ses = new AWS.SES({ region: 'eu-west-2', endpoint: `http://${process.env.host}:${process.env.sesPort}` })
 exports.handler = async (event) => {
   console.log("SQS Message has been stored and processed !")
   const customerDetails = JSON.parse(event.Records[0].body);

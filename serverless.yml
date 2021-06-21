@@ -12,6 +12,13 @@ provider:
         tableName: ${self:custom.tableName}
         bucketName: ${self:custom.bucketName}
         customerCreatedSNS: customerCreatedT
+        snsPort: ${self:custom.serverless-offline-sns.localPort}
+        #sesPort: ${self:custom.ses.port}
+        sqsPort: 9324
+        postgresDB: myBusinessdb
+        postgresUser: user
+        postgresPass: password
+        host: localhost
           
   iamRoleStatements:
         - Effect: Allow
@@ -29,7 +36,7 @@ plugins:
     - serverless-plugin-offline-dynamodb-stream
     - serverless-offline-sns
     - serverless-offline-sqs
-    - serverless-offline-ses
+    #- serverless-offline-ses
     - serverless-offline
     
 package:
@@ -44,12 +51,12 @@ custom:
       debug: true
     tableName: customer-table
     bucketName: local-bucket-upload
-    ses:
-      stages:
-        - local
-      port: 9001
-      outputDir: "./outpout"
-      clean: false
+    # ses:
+    #   stages:
+    #     - local
+    #   port: 9001
+    #   outputDir: "./outpout"
+    #   clean: false
     serverless-offline-sqs:
       autoCreate: true
       apiVersion: '2012-11-05'

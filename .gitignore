@@ -348,6 +348,7 @@ node_modules/
 .webpack/
 .serverless/
 s3-local/
+pgdata/
 
 # Typescript v1 declaration files
 typings/
