@@ -6,7 +6,7 @@ import AWS from 'aws-sdk';
  * 
  */
 let topic = process.env.customerCreatedSNS;
-exports.handler = async (event) => {
+const handler = async (event) => {
 
   let sns = new AWS.SNS(
     {
@@ -37,3 +37,4 @@ exports.handler = async (event) => {
 
 
 }
+export { handler }

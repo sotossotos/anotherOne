@@ -50,7 +50,7 @@ describe('Testing create customer Lambda', () => {
   test('Test without birth year', () => {
     expect.assertions(1);
     data = { ID: '11111', name: 'aName', surname: 'aSurname', email: "some@one.com" };
-    console.log(eventProducer(data.ID, data.name, data.surname, data.email))
+    // console.log(eventProducer(data.ID, data.name, data.surname, data.email))
     let res = checker.inputCheck(eventProducer(data.ID, data.name, data.surname, data.email));
     expect(res.statusCode).toBe(400);
 

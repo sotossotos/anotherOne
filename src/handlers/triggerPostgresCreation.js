@@ -2,7 +2,7 @@ import * as pg from 'pg';
 import { Sequelize, DataTypes } from 'sequelize'
 import { customerTablePostgress, } from '../../tables/myBusiness-postgres-tables'
 
-exports.handler = async (event) => {
+const handler = async (event) => {
   // Having a backup from the dynamodb -> postgres
   console.log(`!!!!!${event.Records[0].eventName}!!!!!`);
   if(event.Records[0].eventName === "INSERT" || event.Records[0].eventName === "MODIFY"){
@@ -20,3 +20,4 @@ exports.handler = async (event) => {
   }
   
 }
+export { handler }

@@ -6,9 +6,9 @@ const tableName = process.env.tableName;
 /**
  * 
  * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
- * @returns {import('../utils/API_Responses')}
+ * @returns { Responses }
  */
-exports.handler = async event => {
+const handler = async event => {
 
   if (!event.pathParameters || !event.pathParameters.ID) {
     return Responses._400({ message: 'missing the ID from the url path' });
@@ -28,3 +28,4 @@ exports.handler = async event => {
 
   return Responses._200(customer.attrs);
 };
+export { handler }

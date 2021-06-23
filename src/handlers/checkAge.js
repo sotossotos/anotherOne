@@ -26,16 +26,5 @@ const handler = async (event) => {
     check = 'over' + check
   }
   return Responses._200({ message: 'Based on the age provided ' + user.name + ' ' + user.surname + ' you are ' + check })
-  // return {
-  //   statusCode: 200,
-  //   body: JSON.stringify(
-  //     {
-  //       message: 'Based on the age provided ' + user.name + ' ' + user.surname + ' you are ' + check,
-  //       input: event
-  //     },
-  //     null,
-  //     2
-  //   )
-  // }
 }
 export { handler }

@@ -2,7 +2,7 @@
 import AWS from 'aws-sdk'
 const sqs = new AWS.SQS({ endpoint: `${process.env.host}:${process.env.sqsPort}` })
 const queueURL = `http://${process.env.host}:${process.env.sqsPort}/queue/EmailQueue`
-exports.handler = async (event, context) => {
+const handler = async (event, context) => {
   const customerDetails = JSON.parse(event.Records[0].Sns.Message)
 
   console.log(customerDetails)
@@ -19,3 +19,4 @@ exports.handler = async (event, context) => {
     }
   })
 }
+export { handler }

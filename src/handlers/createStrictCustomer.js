@@ -7,7 +7,7 @@ const tableName = process.env.tableName;
  * @param { * } event 
  * @returns {import('../utils/API_Responses')}
  */
-exports.handler = async event => {
+const handler = async event => {
 
   const ID = event.pathParameters.ID;
   const customer = JSON.parse(event.body);
@@ -29,3 +29,4 @@ exports.handler = async event => {
 
   return Responses._200({ newCustomer });
 };
+export { handler }

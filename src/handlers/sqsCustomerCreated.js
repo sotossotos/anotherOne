@@ -1,7 +1,7 @@
 
 import AWS from 'aws-sdk'
 // const ses = new AWS.SES({ region: 'eu-west-2', endpoint: `http://${process.env.host}:${process.env.sesPort}` })
-exports.handler = async (event) => {
+const handler = async (event) => {
   console.log("SQS Message has been stored and processed !")
   const customerDetails = JSON.parse(event.Records[0].body);
   console.log(event.Records[0].body);
@@ -29,10 +29,6 @@ exports.handler = async (event) => {
     },
     Source: 'YourProvider@electricity.co.uk',
   };
-  // try{
-  //   await ses.sendEmail(params).promise();
-  // }catch(error){
-  //   console.log('error sending the email',error)
-  // }
 
 }
+export { handler }

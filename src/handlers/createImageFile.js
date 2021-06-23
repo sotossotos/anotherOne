@@ -10,7 +10,7 @@ import { S3 } from '../utils/S3';
  * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
  * @returns {import('../utils/API_Responses')} 
  */
-exports.handler = async event => {
+const handler = async event => {
   console.log('event', event);
   if (!event.pathParameters || !event.pathParameters.fName) {
     return Responses._400({ message: 'missing the file name from URI path' });
@@ -28,3 +28,5 @@ exports.handler = async event => {
 
   return Responses._200({ outData });
 };
+
+export { handler }

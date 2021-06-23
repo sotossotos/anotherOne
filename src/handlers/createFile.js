@@ -8,7 +8,7 @@ const bucket = process.env.bucketName
  * @param { * } event
  * @returns { Responses }
  */
-exports.handler = async event => {
+const handler = async event => {
   const inData = inputCheck(event)
   if (inData.statusCode) { return inData }
   const fName = event.pathParameters.fName
@@ -28,7 +28,7 @@ exports.handler = async event => {
  * @param {*} event
  * @returns {Responses}
  */
-export const inputCheck = event => {
+const inputCheck = event => {
   if (!event.pathParameters || !event.pathParameters.fName) {
     return Responses._400({ message: 'missing the file name from URI path' })
   }
@@ -45,3 +45,4 @@ export const inputCheck = event => {
 
 
 }
+export { handler,inputCheck }

@@ -17,7 +17,7 @@
     "jimp": "^0.16.1",
     "joi": "^17.4.0",
     "sequelize": "^6.6.2",
-    "serverless": "^2.43.1",
+    "serverless": "^2.48.0",
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-http": "^2.7.0",
     "serverless-offline": "^7.0.0",
@@ -32,7 +32,7 @@
     "@shelf/jest-dynamodb": "^1.8.1",
     "@types/jest": "^26.0.23",
     "babel-jest": "^27.0.2",
-    "jest": "^27.0.3",
+    "jest": "^27.0.5",
     "noop2": "^2.0.0",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.4",
@@ -44,5 +44,8 @@
     "serverless-webpack": "^5.5.0",
     "standard": "^16.0.3",
     "webpack": "^5.38.1"
+  },
+  "resolutions": {
+    "dynamodb-localhost": "0.0.7"
   }
 }

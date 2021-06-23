@@ -5,9 +5,9 @@ import Responses from '../utils/API_Responses.js';
 /**
  * 
  * @param {import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
- * @returns {JSON}
+ * @returns { Responses }
  */
-exports.handler = async (event) => {
+const handler = async (event) => {
 
   try {
     await sequelize.authenticate();
@@ -19,4 +19,5 @@ exports.handler = async (event) => {
 
 
 }
+export { handler }
 

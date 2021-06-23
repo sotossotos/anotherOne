@@ -60,7 +60,7 @@ test('Dynamo write with mockup assuming the dynamodb works', async () => {
 test('Dynamo get with mockup assuming the dynamodb works', async () => {
   expect.assertions(1)
   try {
-    const result = await Dynamo.get(data.id, validTableName);
+    const result = await Dynamo.get(data.ID, validTableName);
     expect(result).toBe(data);
 
   } catch (error) {

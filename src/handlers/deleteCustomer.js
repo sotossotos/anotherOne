@@ -7,9 +7,9 @@ const tableName = process.env.tableName;
 /**
  * 
  * @param { APIGatewayProxyEvent } event 
- * @returns {}
+ * @returns { * }
  */
-exports.handler = async event => {
+const handler = async event => {
   let res;
   if (!event.pathParameters || !event.pathParameters.ID) {
     return Responses._400({ message: 'missing the ID from the url path' });
@@ -28,7 +28,7 @@ exports.handler = async event => {
   return Responses._200({ message: `Successful deletion of customer with ID -> ${ID}` });
 };
 
-export const getCustomer = async id => {
+const getCustomer = async id => {
   let customerRes;
   try {
     customerRes = await Customer.get(id);
@@ -38,3 +38,4 @@ export const getCustomer = async id => {
   }
   return customerRes;
 }
+export { handler,getCustomer }

@@ -9,7 +9,7 @@ const bucket = process.env.bucketName;
  * @param {*} event 
  * @returns 
  */
-exports.handler = async event => {
+const handler = async event => {
   if (!event.pathParameters || !event.pathParameters.fName) {
     // failed without an fileName
     return Responses._400({ message: 'missing the fileName from the path' });
@@ -28,3 +28,5 @@ exports.handler = async event => {
 
   return Responses._200(file);
 };
+
+export { handler }

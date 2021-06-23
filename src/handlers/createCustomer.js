@@ -9,7 +9,7 @@ import { customerSchema } from '../../tables/customer-schema'
  * @param { import('serverless/plugins/aws/package/compile/events/apiGateway/lib/validate').ApiGatewayEvent} event 
  * @returns {import('../utils/API_Responses')} 
  */
-exports.handler = async event => {
+const handler = async event => {
   let newCustomer = inputCheck(event)
   if (newCustomer.statusCode) {
     return newCustomer
@@ -35,7 +35,7 @@ exports.handler = async event => {
  * @param {*} event
  * @returns {Responses}
  */
-export const inputCheck = event => {
+const inputCheck = event => {
   if (!event.pathParameters || !event.pathParameters.ID) {
     return Responses._400({ message: 'missing the ID from the url path' });
   }
@@ -49,3 +49,4 @@ export const inputCheck = event => {
   }
   return customer
 }
+export { handler,inputCheck }
